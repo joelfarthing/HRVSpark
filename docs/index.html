@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRVSpark — Your HRV. Raw. Beautiful. On Your Wrist.</title>
+    <meta name="description" content="HRVSpark displays your Apple Watch HRV data as elegant sparkline graphs directly on your watch face. No scores. No stress labels. Just your data.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-card-hover: rgba(255, 255, 255, 0.06);
+            --text-primary: #e8e8ed;
+            --text-secondary: rgba(255, 255, 255, 0.55);
+            --text-muted: rgba(255, 255, 255, 0.35);
+            --accent-blue: #338ef7;
+            --accent-glow: rgba(51, 142, 247, 0.15);
+            --accent-orange: #ff7c1e;
+            --border: rgba(255, 255, 255, 0.06);
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Subtle animated gradient background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(51, 142, 247, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(255, 124, 30, 0.04) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(51, 142, 247, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 80px 0 60px;
+        }
+
+        .hero-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 32px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow:
+                0 0 40px rgba(51, 142, 247, 0.15),
+                0 0 80px rgba(51, 142, 247, 0.05);
+        }
+
+        .hero-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #ffffff, #a0c4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero .tagline {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            margin-bottom: 12px;
+        }
+
+        .hero .sub-tagline {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* SCREENSHOTS */
+        .screenshots {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 24px;
+            padding: 40px 0 60px;
+            flex-wrap: wrap;
+        }
+
+        .screenshot-phone {
+            width: 220px;
+            border-radius: 20px;
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(51, 142, 247, 0.1);
+        }
+
+        .screenshot-watch {
+            width: 140px;
+            border-radius: 50%;
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.4),
+                0 0 20px rgba(51, 142, 247, 0.1);
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 48px 0;
+        }
+
+        section h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        section p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 16px;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 0;
+        }
+
+        /* QUOTE */
+        .quote-block {
+            border-left: 2px solid var(--accent-blue);
+            padding: 20px 24px;
+            margin: 32px 0;
+            background: var(--bg-card);
+            border-radius: 0 12px 12px 0;
+        }
+
+        .quote-block p {
+            font-style: italic;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .quote-block .attribution {
+            font-style: normal;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* FEATURE GRID */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 32px 0;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .feature-card:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-card .number {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-bottom: 4px;
+        }
+
+        .feature-card .label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* COMPARISON TABLE */
+        .comparison {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+        }
+
+        .comparison th {
+            text-align: left;
+            padding: 12px 16px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison td {
+            padding: 14px 16px;
+            font-size: 0.95rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison td:first-child {
+            color: var(--text-muted);
+        }
+
+        .comparison td:last-child {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* WHO IT'S FOR */
+        .persona {
+            margin-bottom: 20px;
+        }
+
+        .persona strong {
+            color: var(--text-primary);
+        }
+
+        .persona p {
+            margin-top: 4px;
+            font-size: 0.95rem;
+        }
+
+        /* APP STORE BLOCK */
+        .app-store-block {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .app-store-block h2 {
+            margin-bottom: 8px;
+        }
+
+        .app-store-block p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+        }
+
+        .badge-placeholder {
+            display: inline-block;
+            padding: 14px 32px;
+            background: var(--accent-blue);
+            color: white;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .badge-placeholder:hover {
+            opacity: 0.85;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        footer p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--text-primary);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero .tagline { font-size: 1.1rem; }
+            .screenshots { gap: 16px; }
+            .screenshot-phone { width: 180px; }
+            .screenshot-watch { width: 110px; }
+            .features { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <div class="container">
+        <header class="hero">
+            <div class="hero-logo">
+                <img src="images/logo.svg" alt="HRVSpark Logo">
+            </div>
+            <h1>HRVSpark</h1>
+            <p class="tagline">Your HRV. Raw. Beautiful. On your wrist.</p>
+            <p class="sub-tagline">Data without the verdict.</p>
+        </header>
+
+        <!-- SCREENSHOTS -->
+        <div class="screenshots">
+            <img src="images/ios-screenshot.jpeg" alt="HRVSpark iPhone Dashboard" class="screenshot-phone">
+            <img src="images/watch-screenshot.png" alt="HRVSpark Watch App" class="screenshot-watch">
+            <img src="images/complication-screenshot.png" alt="HRVSpark Complication" class="screenshot-watch">
+        </div>
+
+        <hr class="divider">
+
+        <!-- WHAT IT IS -->
+        <section>
+            <h2>A window, not a verdict.</h2>
+            <p>HRVSpark puts your Heart Rate Variability data exactly where you want it — on your Apple Watch face, as a live sparkline graph, always visible, never interpreted.</p>
+            <p>No readiness scores. No stress labels. No algorithm telling you how to feel about your own physiology. Just your raw SDNN values, beautifully displayed across four time windows.</p>
+            <p>You already know what a cold plunge does to your HRV. You already know what poor sleep looks like in the numbers. HRVSpark gives you the clearest possible view of your data — and trusts you to know what it means.</p>
+        </section>
+
+        <!-- FEATURES -->
+        <div class="features">
+            <div class="feature-card">
+                <div class="number">10</div>
+                <div class="label">Watch Face Complications</div>
+            </div>
+            <div class="feature-card">
+                <div class="number">4</div>
+                <div class="label">Time Windows</div>
+            </div>
+            <div class="feature-card">
+                <div class="number">0</div>
+                <div class="label">Stress Scores</div>
+            </div>
+            <div class="feature-card">
+                <div class="number">∞</div>
+                <div class="label">Trust in You</div>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- THE PROBLEM -->
+        <section>
+            <h2>The Problem With HRV Apps</h2>
+            <p>Heart Rate Variability is one of the most revealing windows into your autonomic nervous system — a daily snapshot of how recovered, stressed, or activated you are at a physiological level.</p>
+            <p>And yet most HRV apps take that raw, honest signal and bury it under a layer of interpretation. You get a score. A label. A color. A verdict.</p>
+            <p><em>Your readiness is 62. You are moderately stressed. Recovery recommended.</em></p>
+            <p>For the curious, the self-directed, the ones who already know their own bodies well enough to find those verdicts condescending — it produces exactly the opposite of the intended effect. Seeing a low readiness score first thing in the morning is its own stressor.</p>
+        </section>
+
+        <hr class="divider">
+
+        <!-- DESIGN PHILOSOPHY -->
+        <section>
+            <h2>Design Philosophy</h2>
+
+            <div class="quote-block">
+                <p>"I always drift up and vary a lot while sleeping. The numbers always crash after hot yoga. They go up with tvTENS on my ear. They go WAY up with a cold shower or ice plunge. I wanted to be able to see THAT — not some smoothed or filtered interpretation."</p>
+                <p class="attribution">— Joel Farthing, creator</p>
+            </div>
+
+            <p>No interpretation means no color-coding by value. No anxiety means subtle aesthetics — dark backgrounds, soft blue glows, data that whispers rather than shouts.</p>
+            <p>Complication-first design means it's always there — not something you open, but something you glance at. Part of your watch face like the time and the date.</p>
+        </section>
+
+        <hr class="divider">
+
+        <!-- WHO IT'S FOR -->
+        <section>
+            <h2>Who It's For</h2>
+
+            <div class="persona">
+                <strong>The self-experimenter.</strong>
+                <p>You're already tracking. You've already noticed patterns. You don't need an app to tell you what your body is doing — you need a better window to see it.</p>
+            </div>
+
+            <div class="persona">
+                <strong>The biohacker.</strong>
+                <p>You do cold exposure, breathwork, vagal nerve stimulation, HRV-guided training. You need granular, honest data to evaluate your interventions.</p>
+            </div>
+
+            <div class="persona">
+                <strong>The HRV veteran.</strong>
+                <p>You've used the other apps. You liked some features. But you got tired of the interpretation layer — the gamification of your own physiology.</p>
+            </div>
+
+            <div class="persona">
+                <strong>The anxiety-conscious.</strong>
+                <p>When the app stops telling you you're stressed, checking your HRV stops being a source of dread. It becomes simply informative.</p>
+            </div>
+        </section>
+
+        <hr class="divider">
+
+        <!-- COMPARISON -->
+        <section>
+            <h2>What Makes This Different</h2>
+            <table class="comparison">
+                <thead>
+                    <tr>
+                        <th>Other HRV Apps</th>
+                        <th>HRVSpark</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Readiness score</td><td>Raw SDNN value</td></tr>
+                    <tr><td>Color-coded verdict</td><td>Neutral sparkline</td></tr>
+                    <tr><td>Proprietary algorithm</td><td>Apple HealthKit data</td></tr>
+                    <tr><td>Opens an app</td><td>Always on your watch face</td></tr>
+                    <tr><td>Smooth the data</td><td>Show the data</td></tr>
+                    <tr><td>Tell you what to do</td><td>Show you what happened</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <hr class="divider">
+
+        <!-- CTA -->
+        <section class="app-store-block">
+            <h2>Coming Soon to the App Store</h2>
+            <p>Currently in TestFlight beta.</p>
+            <a href="mailto:joel@filamentlabs.com" class="badge-placeholder">Request Beta Access</a>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <p><a href="privacy.html">Privacy Policy</a> · © 2026 Filament Labs</p>
+        </footer>
+    </div>
+
+</body>
+</html>
