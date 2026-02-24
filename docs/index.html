@@ -1,10 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HRVSpark — Your HRV. Raw. Beautiful. On Your Wrist.</title>
-    <meta name="description" content="HRVSpark displays your Apple Watch HRV data as elegant sparkline graphs directly on your watch face. No scores. No stress labels. Just your data.">
+    <meta name="description"
+        content="HRVSpark displays your Apple Watch HRV data as elegant sparkline graphs directly on your watch face. No scores. No stress labels. Just your data.">
+    <!-- Open Graph / iMessage / Social Preview -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://joelfarthing.github.io/HRVSpark/">
+    <meta property="og:title" content="HRVSpark — Your HRV. Raw. Beautiful. On Your Wrist.">
+    <meta property="og:description"
+        content="Live sparkline HRV graphs on your Apple Watch face. No scores. No stress labels. Just your data.">
+    <meta property="og:image" content="https://joelfarthing.github.io/HRVSpark/images/watch-screenshot.png">
+    <meta property="og:image:width" content="396">
+    <meta property="og:image:height" content="484">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="HRVSpark — Your HRV. Raw. Beautiful. On Your Wrist.">
+    <meta name="twitter:description"
+        content="Live sparkline HRV graphs on your Apple Watch face. No scores. No stress. Just your data.">
+    <meta name="twitter:image" content="https://joelfarthing.github.io/HRVSpark/images/watch-screenshot.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -23,7 +40,11 @@
             --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: var(--font);
@@ -37,7 +58,10 @@
         body::before {
             content: '';
             position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background:
                 radial-gradient(ellipse at 20% 50%, rgba(51, 142, 247, 0.06) 0%, transparent 50%),
                 radial-gradient(ellipse at 80% 20%, rgba(255, 124, 30, 0.04) 0%, transparent 50%),
@@ -309,15 +333,33 @@
 
         /* RESPONSIVE */
         @media (max-width: 600px) {
-            .hero h1 { font-size: 2.2rem; }
-            .hero .tagline { font-size: 1.1rem; }
-            .screenshots { gap: 16px; }
-            .screenshot-phone { width: 180px; }
-            .screenshot-watch { width: 110px; }
-            .features { grid-template-columns: 1fr 1fr; }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.1rem;
+            }
+
+            .screenshots {
+                gap: 16px;
+            }
+
+            .screenshot-phone {
+                width: 180px;
+            }
+
+            .screenshot-watch {
+                width: 110px;
+            }
+
+            .features {
+                grid-template-columns: 1fr 1fr;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <!-- HERO -->
@@ -343,9 +385,13 @@
         <!-- WHAT IT IS -->
         <section>
             <h2>A window, not a verdict.</h2>
-            <p>HRVSpark puts your Heart Rate Variability data exactly where you want it — on your Apple Watch face, as a live sparkline graph, always visible, never interpreted.</p>
-            <p>No readiness scores. No stress labels. No algorithm telling you how to feel about your own physiology. Just your raw SDNN values, beautifully displayed across four time windows.</p>
-            <p>You already know what a cold plunge does to your HRV. You already know what poor sleep looks like in the numbers. HRVSpark gives you the clearest possible view of your data — and trusts you to know what it means.</p>
+            <p>HRVSpark puts your Heart Rate Variability data exactly where you want it — on your Apple Watch face, as a
+                live sparkline graph, always visible, never interpreted.</p>
+            <p>No readiness scores. No stress labels. No algorithm telling you how to feel about your own physiology.
+                Just your raw SDNN values, beautifully displayed across four time windows.</p>
+            <p>You already know what a cold plunge does to your HRV. You already know what poor sleep looks like in the
+                numbers. HRVSpark gives you the clearest possible view of your data — and trusts you to know what it
+                means.</p>
         </section>
 
         <!-- FEATURES -->
@@ -373,10 +419,14 @@
         <!-- THE PROBLEM -->
         <section>
             <h2>The Problem With HRV Apps</h2>
-            <p>Heart Rate Variability is one of the most revealing windows into your autonomic nervous system — a daily snapshot of how recovered, stressed, or activated you are at a physiological level.</p>
-            <p>And yet most HRV apps take that raw, honest signal and bury it under a layer of interpretation. You get a score. A label. A color. A verdict.</p>
+            <p>Heart Rate Variability is one of the most revealing windows into your autonomic nervous system — a daily
+                snapshot of how recovered, stressed, or activated you are at a physiological level.</p>
+            <p>And yet most HRV apps take that raw, honest signal and bury it under a layer of interpretation. You get a
+                score. A label. A color. A verdict.</p>
             <p><em>Your readiness is 62. You are moderately stressed. Recovery recommended.</em></p>
-            <p>For the curious, the self-directed, the ones who already know their own bodies well enough to find those verdicts condescending — it produces exactly the opposite of the intended effect. Seeing a low readiness score first thing in the morning is its own stressor.</p>
+            <p>For the curious, the self-directed, the ones who already know their own bodies well enough to find those
+                verdicts condescending — it produces exactly the opposite of the intended effect. Seeing a low readiness
+                score first thing in the morning is its own stressor.</p>
         </section>
 
         <hr class="divider">
@@ -386,12 +436,16 @@
             <h2>Design Philosophy</h2>
 
             <div class="quote-block">
-                <p>"I always drift up and vary a lot while sleeping. The numbers always crash after hot yoga. They go up with tvTENS on my ear. They go WAY up with a cold shower or ice plunge. I wanted to be able to see THAT — not some smoothed or filtered interpretation."</p>
+                <p>"I always drift up and vary a lot while sleeping. The numbers always crash after hot yoga. They go up
+                    with tvTENS on my ear. They go WAY up with a cold shower or ice plunge. I wanted to be able to see
+                    THAT — not some smoothed or filtered interpretation."</p>
                 <p class="attribution">— Joel Farthing, creator</p>
             </div>
 
-            <p>No interpretation means no color-coding by value. No anxiety means subtle aesthetics — dark backgrounds, soft blue glows, data that whispers rather than shouts.</p>
-            <p>Complication-first design means it's always there — not something you open, but something you glance at. Part of your watch face like the time and the date.</p>
+            <p>No interpretation means no color-coding by value. No anxiety means subtle aesthetics — dark backgrounds,
+                soft blue glows, data that whispers rather than shouts.</p>
+            <p>Complication-first design means it's always there — not something you open, but something you glance at.
+                Part of your watch face like the time and the date.</p>
         </section>
 
         <hr class="divider">
@@ -402,22 +456,26 @@
 
             <div class="persona">
                 <strong>The self-experimenter.</strong>
-                <p>You're already tracking. You've already noticed patterns. You don't need an app to tell you what your body is doing — you need a better window to see it.</p>
+                <p>You're already tracking. You've already noticed patterns. You don't need an app to tell you what your
+                    body is doing — you need a better window to see it.</p>
             </div>
 
             <div class="persona">
                 <strong>The biohacker.</strong>
-                <p>You do cold exposure, breathwork, vagal nerve stimulation, HRV-guided training. You need granular, honest data to evaluate your interventions.</p>
+                <p>You do cold exposure, breathwork, vagal nerve stimulation, HRV-guided training. You need granular,
+                    honest data to evaluate your interventions.</p>
             </div>
 
             <div class="persona">
                 <strong>The HRV veteran.</strong>
-                <p>You've used the other apps. You liked some features. But you got tired of the interpretation layer — the gamification of your own physiology.</p>
+                <p>You've used the other apps. You liked some features. But you got tired of the interpretation layer —
+                    the gamification of your own physiology.</p>
             </div>
 
             <div class="persona">
                 <strong>The anxiety-conscious.</strong>
-                <p>When the app stops telling you you're stressed, checking your HRV stops being a source of dread. It becomes simply informative.</p>
+                <p>When the app stops telling you you're stressed, checking your HRV stops being a source of dread. It
+                    becomes simply informative.</p>
             </div>
         </section>
 
@@ -434,12 +492,30 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Readiness score</td><td>Raw SDNN value</td></tr>
-                    <tr><td>Color-coded verdict</td><td>Neutral sparkline</td></tr>
-                    <tr><td>Proprietary algorithm</td><td>Apple HealthKit data</td></tr>
-                    <tr><td>Opens an app</td><td>Always on your watch face</td></tr>
-                    <tr><td>Smooth the data</td><td>Show the data</td></tr>
-                    <tr><td>Tell you what to do</td><td>Show you what happened</td></tr>
+                    <tr>
+                        <td>Readiness score</td>
+                        <td>Raw SDNN value</td>
+                    </tr>
+                    <tr>
+                        <td>Color-coded verdict</td>
+                        <td>Neutral sparkline</td>
+                    </tr>
+                    <tr>
+                        <td>Proprietary algorithm</td>
+                        <td>Apple HealthKit data</td>
+                    </tr>
+                    <tr>
+                        <td>Opens an app</td>
+                        <td>Always on your watch face</td>
+                    </tr>
+                    <tr>
+                        <td>Smooth the data</td>
+                        <td>Show the data</td>
+                    </tr>
+                    <tr>
+                        <td>Tell you what to do</td>
+                        <td>Show you what happened</td>
+                    </tr>
                 </tbody>
             </table>
         </section>
@@ -450,7 +526,7 @@
         <section class="app-store-block">
             <h2>Coming Soon to the App Store</h2>
             <p>Currently in TestFlight beta.</p>
-            <a href="mailto:chains_grout_6k@icloud.com" class="badge-placeholder">Request Beta Access</a>
+            <a href="mailto:joel@filamentlabs.com" class="badge-placeholder">Request Beta Access</a>
         </section>
 
         <!-- FOOTER -->
@@ -460,4 +536,5 @@
     </div>
 
 </body>
+
 </html>
