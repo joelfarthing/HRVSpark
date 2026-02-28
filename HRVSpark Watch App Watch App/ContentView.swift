@@ -350,10 +350,12 @@ struct ContentView: View {
                         .foregroundColor(.white)
                         .shadow(color: Color(red: 0.20, green: 0.55, blue: 1.0).opacity(1.0), radius: 2, x: 0, y: 0)
                         .shadow(color: Color(red: 0.20, green: 0.55, blue: 1.0).opacity(0.7), radius: 6, x: 0, y: 0)
+                        .offset(y: 3)
                 } else {
                     Text("--")
                         .font(.system(.title3, design: .monospaced, weight: .bold))
                         .foregroundColor(.white)
+                        .offset(y: 3)
                 }
                 Text(gaugeCharacter)
                     .font(.system(size: 7, weight: .bold, design: .monospaced))
