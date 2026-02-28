@@ -4,6 +4,12 @@ This document defines the essential context and operational rules for the **HRVS
 
 ---
 
+## 🐙 GitHub Repository Information
+- **Repository**: `joelfarthing/HRVSpark` (Private)
+- **URL**: `https://github.com/joelfarthing/HRVSpark`
+- **SSH**: `git@github.com:joelfarthing/HRVSpark.git`
+- **Main Branch**: `main`
+
 ## ⚠️ Critical Backup Protocol (FATAL ERROR IF IGNORED)
 
 **We recently suffered a severe, but recoverable data loss incident. To permanently mitigate this risk, a strict GitHub backup protocol is now in effect.**
