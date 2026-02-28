@@ -136,9 +136,35 @@ struct ContentView: View {
                                 timeframeLabel: "8H",
                                 data: dataManager.sparklineData8Hours,
                                 reading: dataManager.freeCardReading,
-                                caption: "Every reading from the last 8 hours. Big number: your most recent HRV reading.\nDashed lines indicate periods when your device took no readings.",
+                                caption: "Every reading from the last 8 hours. Big number: your most recent HRV reading.",
                                 maxContiguousGap: 12
                             )
+                            
+                            // Data sparsity info callout (collapsed by default)
+                            DisclosureGroup {
+                                VStack(alignment: .leading, spacing: 8) {
+                                    Text("Dashed lines indicate periods when your watch took no readings\u{2014}this is normal. watchOS limits background HRV sampling to conserve battery.")
+                                        .font(.system(size: 13))
+                                        .foregroundColor(.white.opacity(0.85))
+                                    
+                                    Text("Users with \u{201C}AFib History\u{201D} enabled in Settings \u{2192} Health \u{2192} Heart tend to see more frequent readings. You can also run a 1-minute Breathe session in Mindfulness to force a new reading at any time.")
+                                        .font(.system(size: 13))
+                                        .foregroundColor(.gray)
+                                }
+                            } label: {
+                                HStack(spacing: 6) {
+                                    Image(systemName: "info.circle")
+                                        .foregroundColor(.blue)
+                                        .font(.system(size: 14, weight: .semibold))
+                                    Text("Seeing dashes in your line?")
+                                        .font(.system(size: 14, weight: .bold))
+                                        .foregroundColor(.white)
+                                }
+                            }
+                            .tint(.gray)
+                            .padding()
+                            .background(Color.white.opacity(0.05))
+                            .cornerRadius(16)
                             
                             // G1: 8H Gauge
                             gaugeCard(
@@ -416,10 +442,10 @@ struct ContentView: View {
                 slateBlueTheme.ignoresSafeArea()
                 
                 ScrollView {
-                    VStack(alignment: .leading, spacing: 0) {
+                    VStack(spacing: 0) {
                         brandHeaderReservedSpace
                         
-                        VStack(alignment: .leading, spacing: 24) {
+                        VStack(spacing: 24) {
                             VStack(alignment: .leading, spacing: 12) {
                                 Text("How It Works")
                                     .font(.title3)
@@ -430,6 +456,7 @@ struct ContentView: View {
                                     .font(.body)
                                     .foregroundColor(.gray)
                             }
+                            .frame(maxWidth: .infinity, alignment: .leading)
                             .padding()
                             .background(Color.white.opacity(0.05))
                             .cornerRadius(16)
@@ -453,6 +480,7 @@ struct ContentView: View {
                                     .font(.body)
                                     .foregroundColor(.gray)
                             }
+                            .frame(maxWidth: .infinity, alignment: .leading)
                             .padding()
                             .background(Color.white.opacity(0.05))
                             .cornerRadius(16)
@@ -476,6 +504,31 @@ struct ContentView: View {
                                     .font(.body)
                                     .foregroundColor(.gray)
                             }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding()
+                            .background(Color.white.opacity(0.05))
+                            .cornerRadius(16)
+                            
+                            VStack(alignment: .leading, spacing: 12) {
+                                HStack {
+                                    Image(systemName: "cross.case.fill")
+                                        .foregroundColor(.red.opacity(0.8))
+                                        .font(.title2)
+                                    Text("Medical Disclaimer")
+                                        .font(.title3)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(.white)
+                                }
+                                
+                                Text("HRVSpark is for informational purposes only. It visualizes heart\u{2011}rate variability data generated and stored exclusively on your personal devices\u{2014}no data ever leaves your iPhone or Apple Watch.")
+                                    .font(.body)
+                                    .foregroundColor(.white)
+                                
+                                Text("HRVSpark is not intended to diagnose, treat, cure, or prevent any disease or medical condition. It does not provide medical advice. Always consult a qualified healthcare provider with any questions regarding a medical condition.")
+                                    .font(.body)
+                                    .foregroundColor(.gray)
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
                             .padding()
                             .background(Color.white.opacity(0.05))
                             .cornerRadius(16)
@@ -652,6 +705,8 @@ struct ContentView: View {
                 if let val = reading {
                     Text("\(val)")
                         .font(.system(.title3, design: .monospaced, weight: .bold))
+                        .minimumScaleFactor(0.5)
+                        .lineLimit(1)
                         .foregroundColor(.white)
                         .shadow(color: Color(red: 0.20, green: 0.55, blue: 1.0).opacity(1.0), radius: 6, x: 0, y: 0)
                         .shadow(color: Color(red: 0.20, green: 0.55, blue: 1.0).opacity(0.7), radius: 20, x: 0, y: 0)
@@ -665,7 +720,7 @@ struct ContentView: View {
                     .font(.system(size: 7, weight: .bold, design: .monospaced))
                     .foregroundColor(Color(red: 0.34, green: 0.72, blue: 1.0))
             }
-            .offset(y: 5)
+            .offset(y: 2)
         } minimumValueLabel: {
             Text("\(Int(round(minVal)))")
                 .font(.system(size: 8, weight: .bold, design: .monospaced))

@@ -113,6 +113,8 @@ struct GenericCircularComplicationView: View {
                 if let val = currentValue {
                     Text("\(val)")
                         .font(.system(.title3, design: .monospaced, weight: .bold))
+                        .minimumScaleFactor(0.5)
+                        .lineLimit(1)
                         .shadow(color: Color(red: 0.20, green: 0.55, blue: 1.0).opacity(1.0), radius: 6, x: 0, y: 0)
                         .shadow(color: Color(red: 0.20, green: 0.55, blue: 1.0).opacity(0.7), radius: 20, x: 0, y: 0)
                         .shadow(color: Color(red: 0.20, green: 0.55, blue: 1.0).opacity(0.5), radius: 35, x: 0, y: 0)
@@ -124,7 +126,7 @@ struct GenericCircularComplicationView: View {
                     .font(.system(size: 7, weight: .bold, design: .monospaced))
                     .foregroundColor(gaugeTimeframeColor)
             }
-            .offset(y: 5)
+            .offset(y: 2)
         } minimumValueLabel: {
             Text("\(Int(round(minVal)))")
                 .font(.system(size: 8, weight: .bold, design: .monospaced))
