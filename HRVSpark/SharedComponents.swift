@@ -96,21 +96,33 @@ public struct SparklineView: View {
                         }
                     }
                     
-                    // 2a+2b. White stroke with stacked blue shadows (same technique as hero numbers)
+                    // 2a+2b. White stroke with stacked blue strokes (faster than shadows for charts/widgets)
+                    solidPath
+                        .stroke(Color(red: 0.20, green: 0.55, blue: 1.0).opacity(0.4), style: StrokeStyle(lineWidth: 16, lineCap: .round, lineJoin: .round))
+                    solidPath
+                        .stroke(Color(red: 0.20, green: 0.55, blue: 1.0).opacity(0.7), style: StrokeStyle(lineWidth: 8, lineCap: .round, lineJoin: .round))
+                    solidPath
+                        .stroke(Color(red: 0.20, green: 0.55, blue: 1.0), style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
                     solidPath
                         .stroke(Color.white, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
-                        .shadow(color: Color(red: 0.20, green: 0.55, blue: 1.0), radius: 3, x: 0, y: 0)
-                        .shadow(color: Color(red: 0.20, green: 0.55, blue: 1.0).opacity(0.7), radius: 8, x: 0, y: 0)
-                        .shadow(color: Color(red: 0.20, green: 0.55, blue: 1.0).opacity(0.4), radius: 16, x: 0, y: 0)
                     
                     // 2c. Single-point dot: draw a visible filled circle
                     if points.count == 1 {
-                        Circle()
-                            .fill(Color.white)
-                            .frame(width: 6, height: 6)
-                            .shadow(color: Color(red: 0.20, green: 0.55, blue: 1.0), radius: 3, x: 0, y: 0)
-                            .shadow(color: Color(red: 0.20, green: 0.55, blue: 1.0).opacity(0.7), radius: 8, x: 0, y: 0)
-                            .position(points[0].point)
+                        ZStack {
+                            Circle()
+                                .fill(Color(red: 0.20, green: 0.55, blue: 1.0).opacity(0.4))
+                                .frame(width: 22, height: 22)
+                            Circle()
+                                .fill(Color(red: 0.20, green: 0.55, blue: 1.0).opacity(0.7))
+                                .frame(width: 14, height: 14)
+                            Circle()
+                                .fill(Color(red: 0.20, green: 0.55, blue: 1.0))
+                                .frame(width: 10, height: 10)
+                            Circle()
+                                .fill(Color.white)
+                                .frame(width: 6, height: 6)
+                        }
+                        .position(points[0].point)
                     }
                     
                     // Min/Max Annotations
