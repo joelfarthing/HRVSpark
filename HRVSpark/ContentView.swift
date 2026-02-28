@@ -446,92 +446,41 @@ struct ContentView: View {
                         brandHeaderReservedSpace
                         
                         VStack(spacing: 24) {
-                            VStack(alignment: .leading, spacing: 12) {
-                                Text("How It Works")
-                                    .font(.title3)
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.white)
-                                
-                                Text("HRVSpark reads data directly from Apple Health. It performs no diagnosis or algorithmic interpretation—it simply visualizes your raw SDNN measurements.")
-                                    .font(.body)
-                                    .foregroundColor(.gray)
-                            }
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding()
-                            .background(Color.white.opacity(0.05))
-                            .cornerRadius(16)
+                            infoCard(
+                                title: "How It Works",
+                                iconName: nil,
+                                iconColor: nil,
+                                subtitle: nil,
+                                bodyText: "HRVSpark reads data directly from Apple Health. It performs no diagnosis or algorithmic interpretation—it simply visualizes your raw SDNN measurements.",
+                                secondaryBodyText: nil
+                            )
                             
-                            VStack(alignment: .leading, spacing: 12) {
-                                HStack {
-                                    Image(systemName: "lungs.fill")
-                                        .foregroundColor(.teal)
-                                        .font(.title2)
-                                    Text("The Mindfulness Workaround")
-                                        .font(.title3)
-                                        .fontWeight(.bold)
-                                        .foregroundColor(.white)
-                                }
-                                
-                                Text("watchOS restricts how often apps can measure HRV in the background to save battery.")
-                                    .font(.body)
-                                    .foregroundColor(.white)
-                                
-                                Text("To force a new, immediate reading at any time, run a 1-Minute 'Breathe' session in the native Apple Mindfulness app. HRVSpark (and its complications) will automatically detect the new reading within minutes.")
-                                    .font(.body)
-                                    .foregroundColor(.gray)
-                            }
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding()
-                            .background(Color.white.opacity(0.05))
-                            .cornerRadius(16)
+                            infoCard(
+                                title: "The Mindfulness Workaround",
+                                iconName: "lungs.fill",
+                                iconColor: .teal,
+                                subtitle: "watchOS restricts how often apps can measure HRV in the background to save battery.",
+                                bodyText: "To force a new, immediate reading at any time, run a 1-Minute 'Breathe' session in the native Apple Mindfulness app. HRVSpark (and its complications) will automatically detect the new reading within minutes.",
+                                secondaryBodyText: nil
+                            )
                             
-                            VStack(alignment: .leading, spacing: 12) {
-                                HStack {
-                                    Image(systemName: "applewatch")
-                                        .foregroundColor(.blue)
-                                        .font(.title2)
-                                    Text("Watch History Window")
-                                        .font(.title3)
-                                        .fontWeight(.bold)
-                                        .foregroundColor(.white)
-                                }
-                                
-                                Text("Your watch may retain a shorter local HRV history than your iPhone.")
-                                    .font(.body)
-                                    .foregroundColor(.white)
-                                
-                                Text("Complications perform best when your iPhone is reachable, because long-term aggregates can be off-loaded to the companion app.")
-                                    .font(.body)
-                                    .foregroundColor(.gray)
-                            }
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding()
-                            .background(Color.white.opacity(0.05))
-                            .cornerRadius(16)
+                            infoCard(
+                                title: "Watch History Window",
+                                iconName: "applewatch",
+                                iconColor: .blue,
+                                subtitle: "Your watch may retain a shorter local HRV history than your iPhone.",
+                                bodyText: "Complications perform best when your iPhone is reachable, because long-term aggregates can be off-loaded to the companion app.",
+                                secondaryBodyText: nil
+                            )
                             
-                            VStack(alignment: .leading, spacing: 12) {
-                                HStack {
-                                    Image(systemName: "cross.case.fill")
-                                        .foregroundColor(.red.opacity(0.8))
-                                        .font(.title2)
-                                    Text("Medical Disclaimer")
-                                        .font(.title3)
-                                        .fontWeight(.bold)
-                                        .foregroundColor(.white)
-                                }
-                                
-                                Text("HRVSpark is for informational purposes only. It visualizes heart\u{2011}rate variability data generated and stored exclusively on your personal devices\u{2014}no data ever leaves your iPhone or Apple Watch.")
-                                    .font(.body)
-                                    .foregroundColor(.white)
-                                
-                                Text("HRVSpark is not intended to diagnose, treat, cure, or prevent any disease or medical condition. It does not provide medical advice. Always consult a qualified healthcare provider with any questions regarding a medical condition.")
-                                    .font(.body)
-                                    .foregroundColor(.gray)
-                            }
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding()
-                            .background(Color.white.opacity(0.05))
-                            .cornerRadius(16)
+                            infoCard(
+                                title: "Medical Disclaimer",
+                                iconName: "cross.case.fill",
+                                iconColor: .red.opacity(0.8),
+                                subtitle: "HRVSpark is for informational purposes only. It visualizes heart\u{2011}rate variability data generated and stored exclusively on your personal devices\u{2014}no data ever leaves your iPhone or Apple Watch.",
+                                bodyText: "HRVSpark is not intended to diagnose, treat, cure, or prevent any disease or medical condition. It does not provide medical advice. Always consult a qualified healthcare provider with any questions regarding a medical condition.",
+                                secondaryBodyText: nil
+                            )
                             
                             Spacer(minLength: 40)
                         }
@@ -545,6 +494,44 @@ struct ContentView: View {
         }
     }
     
+    // MARK: - Reusable Info Card Builder
+
+    private func infoCard(title: String, iconName: String?, iconColor: Color?, subtitle: String?, bodyText: String, secondaryBodyText: String?) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                if let iconName = iconName, let iconColor = iconColor {
+                    Image(systemName: iconName)
+                        .foregroundColor(iconColor)
+                        .font(.title2)
+                }
+                Text(title)
+                    .font(.title3)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+            }
+
+            if let subtitle = subtitle {
+                Text(subtitle)
+                    .font(.body)
+                    .foregroundColor(.white)
+            }
+
+            Text(bodyText)
+                .font(.body)
+                .foregroundColor(.gray)
+
+            if let secondaryBodyText = secondaryBodyText {
+                Text(secondaryBodyText)
+                    .font(.body)
+                    .foregroundColor(.gray)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding()
+        .background(Color.white.opacity(0.05))
+        .cornerRadius(16)
+    }
+
     // MARK: - Reusable Dashboard Card Builders
     
     /// Circled complication identifier badge (e.g., R1, G2, C1)
@@ -562,21 +549,13 @@ struct ContentView: View {
     /// Blue glow number stack used across all sparkline cards
     private func heroNumber(_ reading: Int?) -> some View {
         HStack(alignment: .lastTextBaseline, spacing: 0) {
-            if let reading = reading {
-                Text("\(reading)")
-                    .font(.system(.largeTitle, design: .monospaced, weight: .bold))
-                    .foregroundColor(.white)
-                    .shadow(color: Color(red: 0.20, green: 0.55, blue: 1.0).opacity(1.0), radius: 4, x: 0, y: 0)
-                    .shadow(color: Color(red: 0.20, green: 0.55, blue: 1.0).opacity(0.7), radius: 13, x: 0, y: 0)
-                    .shadow(color: Color(red: 0.20, green: 0.55, blue: 1.0).opacity(0.5), radius: 23, x: 0, y: 0)
-            } else {
-                Text("--")
-                    .font(.system(.largeTitle, design: .monospaced, weight: .bold))
-                    .foregroundColor(.white)
-                    .shadow(color: Color(red: 0.20, green: 0.55, blue: 1.0).opacity(1.0), radius: 4, x: 0, y: 0)
-                    .shadow(color: Color(red: 0.20, green: 0.55, blue: 1.0).opacity(0.7), radius: 13, x: 0, y: 0)
-                    .shadow(color: Color(red: 0.20, green: 0.55, blue: 1.0).opacity(0.5), radius: 23, x: 0, y: 0)
-            }
+            Text(reading.map { "\($0)" } ?? "--")
+                .font(.system(.largeTitle, design: .monospaced, weight: .bold))
+                .foregroundColor(.white)
+                .shadow(color: Color(red: 0.20, green: 0.55, blue: 1.0).opacity(1.0), radius: 4, x: 0, y: 0)
+                .shadow(color: Color(red: 0.20, green: 0.55, blue: 1.0).opacity(0.7), radius: 13, x: 0, y: 0)
+                .shadow(color: Color(red: 0.20, green: 0.55, blue: 1.0).opacity(0.5), radius: 23, x: 0, y: 0)
+
             Text("ms")
                 .font(.system(.body, design: .monospaced))
                 .foregroundColor(.gray)
