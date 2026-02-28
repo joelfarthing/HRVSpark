@@ -6,20 +6,131 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		1382488FAF1D918D48A28831 /* SharedComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97441A95F66A7A620CE7CA /* SharedComponents.swift */; };
+		4BC845B780269323E384FB00 /* iOSDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439742BB941DBE4D06902C13 /* iOSDataManager.swift */; };
+		586C4A06A68268AB4821008E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1845FEAEAD757C8B0D4F37 /* ContentView.swift */; };
+		5991431C9E17EFAA8B297ADB /* SharedComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE2418384C587368F14F11C /* SharedComponents.swift */; };
+		66D44196A67067A8EC3A311D /* HRVDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771A48919A523F495A64F99F /* HRVDataManager.swift */; };
+		705E49C993B02E9DDA8CD05A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90D4E698EB8E5704F30B699 /* ContentView.swift */; };
+		828745F3B019C90CC217D2F1 /* SharedComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2D486ABE992D4EC28AF229 /* SharedComponents.swift */; };
+		DEA34F8699AAB77AB881A2AB /* StoreKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACC4D50A98209C64CCE1012 /* StoreKitManager.swift */; };
+		E05C34062F4B69030053B87E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E05C34052F4B69030053B87E /* WidgetKit.framework */; };
+		E05C34082F4B69030053B87E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E05C34072F4B69030053B87E /* SwiftUI.framework */; };
+		E05C34132F4B69040053B87E /* HRVSparkComplicationExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E05C34032F4B69030053B87E /* HRVSparkComplicationExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E0BDB2AA2F4B668000CC0CD4 /* HRVSpark Watch App Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = E0BDB2A02F4B667E00CC0CD4 /* HRVSpark Watch App Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F73C4BE399751FE2430764BA /* HRVDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE44F288E2240607F712E3E /* HRVDataManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E05C34112F4B69040053B87E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E0BDB2862F4B644600CC0CD4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E05C34022F4B69030053B87E;
+			remoteInfo = HRVSparkComplicationExtension;
+		};
+		E0BDB2A82F4B668000CC0CD4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E0BDB2862F4B644600CC0CD4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E0BDB29F2F4B667E00CC0CD4;
+			remoteInfo = "HRVSpark Watch App Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E05C34142F4B69040053B87E /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				E05C34132F4B69040053B87E /* HRVSparkComplicationExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E0BDB2AE2F4B668000CC0CD4 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				E0BDB2AA2F4B668000CC0CD4 /* HRVSpark Watch App Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		3A1845FEAEAD757C8B0D4F37 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = HRVSpark/ContentView.swift; sourceTree = SOURCE_ROOT; };
+		3A97441A95F66A7A620CE7CA /* SharedComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SharedComponents.swift; path = "HRVSpark Watch App Watch App/SharedComponents.swift"; sourceTree = SOURCE_ROOT; };
+		439742BB941DBE4D06902C13 /* iOSDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = iOSDataManager.swift; path = HRVSpark/iOSDataManager.swift; sourceTree = SOURCE_ROOT; };
+		771A48919A523F495A64F99F /* HRVDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HRVDataManager.swift; path = "HRVSpark Watch App Watch App/HRVDataManager.swift"; sourceTree = SOURCE_ROOT; };
+		7D2D486ABE992D4EC28AF229 /* SharedComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SharedComponents.swift; path = HRVSpark/SharedComponents.swift; sourceTree = SOURCE_ROOT; };
+		9ACC4D50A98209C64CCE1012 /* StoreKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StoreKitManager.swift; path = HRVSpark/StoreKitManager.swift; sourceTree = SOURCE_ROOT; };
+		D90D4E698EB8E5704F30B699 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = "HRVSpark Watch App Watch App/ContentView.swift"; sourceTree = SOURCE_ROOT; };
+		DBE2418384C587368F14F11C /* SharedComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SharedComponents.swift; path = "HRVSpark Watch App Watch App/SharedComponents.swift"; sourceTree = SOURCE_ROOT; };
+		E05C34032F4B69030053B87E /* HRVSparkComplicationExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HRVSparkComplicationExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		E05C34052F4B69030053B87E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		E05C34072F4B69030053B87E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		E05C341B2F4B6A100053B87E /* HRVSparkComplicationExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HRVSparkComplicationExtension.entitlements; sourceTree = "<group>"; };
 		E0BDB28E2F4B644600CC0CD4 /* HRVSpark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HRVSpark.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0BDB2A02F4B667E00CC0CD4 /* HRVSpark Watch App Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HRVSpark Watch App Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFE44F288E2240607F712E3E /* HRVDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HRVDataManager.swift; path = "HRVSpark Watch App Watch App/HRVDataManager.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		E05C34172F4B69040053B87E /* Exceptions for "HRVSparkComplication" folder in "HRVSparkComplicationExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = E05C34022F4B69030053B87E /* HRVSparkComplicationExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		E05C34092F4B69030053B87E /* HRVSparkComplication */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				E05C34172F4B69040053B87E /* Exceptions for "HRVSparkComplication" folder in "HRVSparkComplicationExtension" target */,
+			);
+			path = HRVSparkComplication;
+			sourceTree = "<group>";
+		};
 		E0BDB2902F4B644600CC0CD4 /* HRVSpark */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = HRVSpark;
 			sourceTree = "<group>";
 		};
+		E0BDB2A12F4B667E00CC0CD4 /* HRVSpark Watch App Watch App */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "HRVSpark Watch App Watch App";
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E05C34002F4B69030053B87E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E05C34082F4B69030053B87E /* SwiftUI.framework in Frameworks */,
+				E05C34062F4B69030053B87E /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E0BDB28B2F4B644600CC0CD4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E0BDB29D2F4B667E00CC0CD4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -29,11 +140,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E05C34042F4B69030053B87E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E05C34052F4B69030053B87E /* WidgetKit.framework */,
+				E05C34072F4B69030053B87E /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E0BDB2852F4B644600CC0CD4 = {
 			isa = PBXGroup;
 			children = (
+				E05C341B2F4B6A100053B87E /* HRVSparkComplicationExtension.entitlements */,
 				E0BDB2902F4B644600CC0CD4 /* HRVSpark */,
+				E0BDB2A12F4B667E00CC0CD4 /* HRVSpark Watch App Watch App */,
+				E05C34092F4B69030053B87E /* HRVSparkComplication */,
+				E05C34042F4B69030053B87E /* Frameworks */,
 				E0BDB28F2F4B644600CC0CD4 /* Products */,
+				3A1845FEAEAD757C8B0D4F37 /* ContentView.swift */,
+				7D2D486ABE992D4EC28AF229 /* SharedComponents.swift */,
+				9ACC4D50A98209C64CCE1012 /* StoreKitManager.swift */,
+				439742BB941DBE4D06902C13 /* iOSDataManager.swift */,
+				D90D4E698EB8E5704F30B699 /* ContentView.swift */,
+				EFE44F288E2240607F712E3E /* HRVDataManager.swift */,
+				3A97441A95F66A7A620CE7CA /* SharedComponents.swift */,
+				771A48919A523F495A64F99F /* HRVDataManager.swift */,
+				DBE2418384C587368F14F11C /* SharedComponents.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -41,6 +174,8 @@
 			isa = PBXGroup;
 			children = (
 				E0BDB28E2F4B644600CC0CD4 /* HRVSpark.app */,
+				E0BDB2A02F4B667E00CC0CD4 /* HRVSpark Watch App Watch App.app */,
+				E05C34032F4B69030053B87E /* HRVSparkComplicationExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,6 +183,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E05C34022F4B69030053B87E /* HRVSparkComplicationExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E05C34182F4B69040053B87E /* Build configuration list for PBXNativeTarget "HRVSparkComplicationExtension" */;
+			buildPhases = (
+				E05C33FF2F4B69030053B87E /* Sources */,
+				E05C34002F4B69030053B87E /* Frameworks */,
+				E05C34012F4B69030053B87E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				E05C34092F4B69030053B87E /* HRVSparkComplication */,
+			);
+			name = HRVSparkComplicationExtension;
+			packageProductDependencies = (
+			);
+			productName = HRVSparkComplicationExtension;
+			productReference = E05C34032F4B69030053B87E /* HRVSparkComplicationExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		E0BDB28D2F4B644600CC0CD4 /* HRVSpark */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E0BDB2992F4B644600CC0CD4 /* Build configuration list for PBXNativeTarget "HRVSpark" */;
@@ -55,10 +212,12 @@
 				E0BDB28A2F4B644600CC0CD4 /* Sources */,
 				E0BDB28B2F4B644600CC0CD4 /* Frameworks */,
 				E0BDB28C2F4B644600CC0CD4 /* Resources */,
+				E0BDB2AE2F4B668000CC0CD4 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E0BDB2A92F4B668000CC0CD4 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				E0BDB2902F4B644600CC0CD4 /* HRVSpark */,
@@ -70,6 +229,30 @@
 			productReference = E0BDB28E2F4B644600CC0CD4 /* HRVSpark.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E0BDB29F2F4B667E00CC0CD4 /* HRVSpark Watch App Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E0BDB2AB2F4B668000CC0CD4 /* Build configuration list for PBXNativeTarget "HRVSpark Watch App Watch App" */;
+			buildPhases = (
+				E0BDB29C2F4B667E00CC0CD4 /* Sources */,
+				E0BDB29D2F4B667E00CC0CD4 /* Frameworks */,
+				E0BDB29E2F4B667E00CC0CD4 /* Resources */,
+				E05C34142F4B69040053B87E /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E05C34122F4B69040053B87E /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				E0BDB2A12F4B667E00CC0CD4 /* HRVSpark Watch App Watch App */,
+			);
+			name = "HRVSpark Watch App Watch App";
+			packageProductDependencies = (
+			);
+			productName = "HRVSpark Watch App Watch App";
+			productReference = E0BDB2A02F4B667E00CC0CD4 /* HRVSpark Watch App Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -78,9 +261,15 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2620;
-				LastUpgradeCheck = 2620;
+				LastUpgradeCheck = 2630;
 				TargetAttributes = {
+					E05C34022F4B69030053B87E = {
+						CreatedOnToolsVersion = 26.2;
+					};
 					E0BDB28D2F4B644600CC0CD4 = {
+						CreatedOnToolsVersion = 26.2;
+					};
+					E0BDB29F2F4B667E00CC0CD4 = {
 						CreatedOnToolsVersion = 26.2;
 					};
 				};
@@ -100,12 +289,28 @@
 			projectRoot = "";
 			targets = (
 				E0BDB28D2F4B644600CC0CD4 /* HRVSpark */,
+				E0BDB29F2F4B667E00CC0CD4 /* HRVSpark Watch App Watch App */,
+				E05C34022F4B69030053B87E /* HRVSparkComplicationExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E05C34012F4B69030053B87E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E0BDB28C2F4B644600CC0CD4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E0BDB29E2F4B667E00CC0CD4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -115,16 +320,124 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E05C33FF2F4B69030053B87E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66D44196A67067A8EC3A311D /* HRVDataManager.swift in Sources */,
+				5991431C9E17EFAA8B297ADB /* SharedComponents.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E0BDB28A2F4B644600CC0CD4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				586C4A06A68268AB4821008E /* ContentView.swift in Sources */,
+				828745F3B019C90CC217D2F1 /* SharedComponents.swift in Sources */,
+				DEA34F8699AAB77AB881A2AB /* StoreKitManager.swift in Sources */,
+				4BC845B780269323E384FB00 /* iOSDataManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E0BDB29C2F4B667E00CC0CD4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				705E49C993B02E9DDA8CD05A /* ContentView.swift in Sources */,
+				F73C4BE399751FE2430764BA /* HRVDataManager.swift in Sources */,
+				1382488FAF1D918D48A28831 /* SharedComponents.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		E05C34122F4B69040053B87E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E05C34022F4B69030053B87E /* HRVSparkComplicationExtension */;
+			targetProxy = E05C34112F4B69040053B87E /* PBXContainerItemProxy */;
+		};
+		E0BDB2A92F4B668000CC0CD4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E0BDB29F2F4B667E00CC0CD4 /* HRVSpark Watch App Watch App */;
+			targetProxy = E0BDB2A82F4B668000CC0CD4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		E05C34152F4B69040053B87E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = HRVSparkComplicationExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 16;
+				DEVELOPMENT_TEAM = 28M6P3S6HD;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HRVSparkComplication/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HRVSparkComplication;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "HRVSpark needs access to your Heart Rate Variability data to display it on your Apple Watch.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "HRVSpark does not write any health data.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.filamentlabs.HRVSpark.watchkitapp.HRVSparkComplication;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
+			};
+			name = Debug;
+		};
+		E05C34162F4B69040053B87E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = HRVSparkComplicationExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 16;
+				DEVELOPMENT_TEAM = 28M6P3S6HD;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HRVSparkComplication/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HRVSparkComplication;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "HRVSpark needs access to your Heart Rate Variability data to display it on your Apple Watch.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "HRVSpark does not write any health data.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.filamentlabs.HRVSpark.watchkitapp.HRVSparkComplication;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
+			};
+			name = Release;
+		};
 		E0BDB2972F4B644600CC0CD4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -178,12 +491,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -236,11 +550,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -251,11 +566,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = HRVSpark/HRVSpark.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = 28M6P3S6HD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "HRVSpark needs access to your Heart Rate Variability data to display it on your Apple Watch.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "HRVSpark does not write any health data.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -283,11 +602,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = HRVSpark/HRVSpark.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = 28M6P3S6HD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "HRVSpark needs access to your Heart Rate Variability data to display it on your Apple Watch.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "HRVSpark does not write any health data.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -310,9 +633,92 @@
 			};
 			name = Release;
 		};
+		E0BDB2AC2F4B668000CC0CD4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "HRVSpark Watch App Watch App/HRVSpark Watch App Watch App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 16;
+				DEVELOPMENT_TEAM = 28M6P3S6HD;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = HRVSpark;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "HRVSpark needs access to your Heart Rate Variability data to display it on your Apple Watch.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "HRVSpark does not write any health data.";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.filamentlabs.HRVSpark;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.filamentlabs.HRVSpark.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
+			};
+			name = Debug;
+		};
+		E0BDB2AD2F4B668000CC0CD4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "HRVSpark Watch App Watch App/HRVSpark Watch App Watch App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 16;
+				DEVELOPMENT_TEAM = 28M6P3S6HD;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = HRVSpark;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "HRVSpark needs access to your Heart Rate Variability data to display it on your Apple Watch.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "HRVSpark does not write any health data.";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.filamentlabs.HRVSpark;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.filamentlabs.HRVSpark.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E05C34182F4B69040053B87E /* Build configuration list for PBXNativeTarget "HRVSparkComplicationExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E05C34152F4B69040053B87E /* Debug */,
+				E05C34162F4B69040053B87E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E0BDB2892F4B644600CC0CD4 /* Build configuration list for PBXProject "HRVSpark" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -327,6 +733,15 @@
 			buildConfigurations = (
 				E0BDB29A2F4B644600CC0CD4 /* Debug */,
 				E0BDB29B2F4B644600CC0CD4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E0BDB2AB2F4B668000CC0CD4 /* Build configuration list for PBXNativeTarget "HRVSpark Watch App Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E0BDB2AC2F4B668000CC0CD4 /* Debug */,
+				E0BDB2AD2F4B668000CC0CD4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

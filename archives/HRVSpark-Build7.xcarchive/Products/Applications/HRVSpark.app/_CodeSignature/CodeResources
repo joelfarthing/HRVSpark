@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>files</key>
+	<dict>
+		<key>AppIcon60x60@2x.png</key>
+		<data>
+		fAHNZFfW8bOQ1MG3llZ0C7IYxjg=
+		</data>
+		<key>AppIcon76x76@2x~ipad.png</key>
+		<data>
+		JqYW9SQJ39ChaBPr3v2f2+oFEqI=
+		</data>
+		<key>Assets.car</key>
+		<data>
+		TnNuuqEqWAGdFYNs4jfzsIHO+f4=
+		</data>
+		<key>Info.plist</key>
+		<data>
+		CBn8CZkUedKBEvJgnKoWL/wYUXU=
+		</data>
+		<key>PkgInfo</key>
+		<data>
+		n57qDP4tZfLD1rCS43W0B4LQjzE=
+		</data>
+		<key>Watch/HRVSpark Watch App Watch App.app/Assets.car</key>
+		<data>
+		rN59qCv0mYtBm/Z9TAx3N0HenwA=
+		</data>
+		<key>Watch/HRVSpark Watch App Watch App.app/HRVSpark Watch App Watch App</key>
+		<data>
+		n9TUSkbmESDxs8lKQN8VZlY83S8=
+		</data>
+		<key>Watch/HRVSpark Watch App Watch App.app/Info.plist</key>
+		<data>
+		ghrwB2VI8DbQ/p8ZhewjkE42I/Y=
+		</data>
+		<key>Watch/HRVSpark Watch App Watch App.app/PkgInfo</key>
+		<data>
+		n57qDP4tZfLD1rCS43W0B4LQjzE=
+		</data>
+		<key>Watch/HRVSpark Watch App Watch App.app/PlugIns/HRVSparkComplicationExtension.appex/HRVSparkComplicationExtension</key>
+		<data>
+		u4Hc1wP3QiEEZ5UUtbcImF6Kems=
+		</data>
+		<key>Watch/HRVSpark Watch App Watch App.app/PlugIns/HRVSparkComplicationExtension.appex/Info.plist</key>
+		<data>
+		Ujc64b2R0FzZwzG4T6eMcpdbnbA=
+		</data>
+		<key>Watch/HRVSpark Watch App Watch App.app/PlugIns/HRVSparkComplicationExtension.appex/_CodeSignature/CodeResources</key>
+		<data>
+		/vmcpfkrc7t8MFI/pPwBHrp4moc=
+		</data>
+		<key>Watch/HRVSpark Watch App Watch App.app/PlugIns/HRVSparkComplicationExtension.appex/embedded.mobileprovision</key>
+		<data>
+		B4ljk86ueOkHyAdB822cTn//B6M=
+		</data>
+		<key>Watch/HRVSpark Watch App Watch App.app/_CodeSignature/CodeResources</key>
+		<data>
+		jHIrK2XtAB7UwskEYfOvE4cnkXQ=
+		</data>
+		<key>Watch/HRVSpark Watch App Watch App.app/embedded.mobileprovision</key>
+		<data>
+		Jam7FWEcSIlzMOK2+q5WcmeOsew=
+		</data>
+		<key>embedded.mobileprovision</key>
+		<data>
+		o37eCFGPfJuuuSPX8RN9tUIojYU=
+		</data>
+	</dict>
+	<key>files2</key>
+	<dict>
+		<key>AppIcon60x60@2x.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			rFVWM2vUXs2e6448gOnag8soilH34YU6lE/J9ZvsNV0=
+			</data>
+		</dict>
+		<key>AppIcon76x76@2x~ipad.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			S1IQbQRk+niFzjR0sF480gU4nak0RecC7QBfz7F4vBU=
+			</data>
+		</dict>
+		<key>Assets.car</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			MinWz69XiWARZ4xDvjjkx3vLHXdvNL6VDwfCnUcDBxc=
+			</data>
+		</dict>
+		<key>Watch/HRVSpark Watch App Watch App.app/Assets.car</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			3RW+oQuACWCvUismoyivJgkbhG+M/76mYD9lt7tWi5c=
+			</data>
+		</dict>
+		<key>Watch/HRVSpark Watch App Watch App.app/HRVSpark Watch App Watch App</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			UbD8IFSR+6R/SlJfZqnEjjZKcvJiU88DzYmkVB1oaKk=
+			</data>
+		</dict>
+		<key>Watch/HRVSpark Watch App Watch App.app/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			7q5tRmsV+ezI63w0N3Ml42yPops1DR1ZPxz9yQ+UOdE=
+			</data>
+		</dict>
+		<key>Watch/HRVSpark Watch App Watch App.app/PkgInfo</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			glAhkclISwTWhTdPmHmgBmBpxJuKyuegSwHTjQfo7KA=
+			</data>
+		</dict>
+		<key>Watch/HRVSpark Watch App Watch App.app/PlugIns/HRVSparkComplicationExtension.appex/HRVSparkComplicationExtension</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			xTbdj5/wNCTKEhVZsIe9HJ7VY0yrgafwaCoUXK4nxKk=
+			</data>
+		</dict>
+		<key>Watch/HRVSpark Watch App Watch App.app/PlugIns/HRVSparkComplicationExtension.appex/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			9/8LF+59NsEoOEIoX8IQvtzt4AOpm6Tx0Kj2KNurT6s=
+			</data>
+		</dict>
+		<key>Watch/HRVSpark Watch App Watch App.app/PlugIns/HRVSparkComplicationExtension.appex/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			XT5VfTW7a1PvwL/IxIEJCgXxb9GUZ0UnqvX0BUOB5rk=
+			</data>
+		</dict>
+		<key>Watch/HRVSpark Watch App Watch App.app/PlugIns/HRVSparkComplicationExtension.appex/embedded.mobileprovision</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			iqljgOPSZzovVCTP76t8KOGkDmDcG1ZNDR7eonoVAkg=
+			</data>
+		</dict>
+		<key>Watch/HRVSpark Watch App Watch App.app/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			STrGhkCnd8kpULwSSVi9igJUdiIdhydSZh4FkWVy63Q=
+			</data>
+		</dict>
+		<key>Watch/HRVSpark Watch App Watch App.app/embedded.mobileprovision</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			XGEoJZGKTWck1IYqlAPsjhGwz34ik0FY4RbrKVXFUn8=
+			</data>
+		</dict>
+		<key>embedded.mobileprovision</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			iHRRkTwGdt9Yve4QO8bJ1A+H2gHDkPzJhS4Fhfy956k=
+			</data>
+		</dict>
+	</dict>
+	<key>rules</key>
+	<dict>
+		<key>^.*</key>
+		<true/>
+		<key>^.*\.lproj/</key>
+		<dict>
+			<key>optional</key>
+			<true/>
+			<key>weight</key>
+			<real>1000</real>
+		</dict>
+		<key>^.*\.lproj/locversion.plist$</key>
+		<dict>
+			<key>omit</key>
+			<true/>
+			<key>weight</key>
+			<real>1100</real>
+		</dict>
+		<key>^Base\.lproj/</key>
+		<dict>
+			<key>weight</key>
+			<real>1010</real>
+		</dict>
+		<key>^version.plist$</key>
+		<true/>
+	</dict>
+	<key>rules2</key>
+	<dict>
+		<key>.*\.dSYM($|/)</key>
+		<dict>
+			<key>weight</key>
+			<real>11</real>
+		</dict>
+		<key>^(.*/)?\.DS_Store$</key>
+		<dict>
+			<key>omit</key>
+			<true/>
+			<key>weight</key>
+			<real>2000</real>
+		</dict>
+		<key>^.*</key>
+		<true/>
+		<key>^.*\.lproj/</key>
+		<dict>
+			<key>optional</key>
+			<true/>
+			<key>weight</key>
+			<real>1000</real>
+		</dict>
+		<key>^.*\.lproj/locversion.plist$</key>
+		<dict>
+			<key>omit</key>
+			<true/>
+			<key>weight</key>
+			<real>1100</real>
+		</dict>
+		<key>^Base\.lproj/</key>
+		<dict>
+			<key>weight</key>
+			<real>1010</real>
+		</dict>
+		<key>^Info\.plist$</key>
+		<dict>
+			<key>omit</key>
+			<true/>
+			<key>weight</key>
+			<real>20</real>
+		</dict>
+		<key>^PkgInfo$</key>
+		<dict>
+			<key>omit</key>
+			<true/>
+			<key>weight</key>
+			<real>20</real>
+		</dict>
+		<key>^embedded\.provisionprofile$</key>
+		<dict>
+			<key>weight</key>
+			<real>20</real>
+		</dict>
+		<key>^version\.plist$</key>
+		<dict>
+			<key>weight</key>
+			<real>20</real>
+		</dict>
+	</dict>
+</dict>
+</plist>
