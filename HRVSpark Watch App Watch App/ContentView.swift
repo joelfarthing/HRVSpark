@@ -451,35 +451,89 @@ struct AboutView: View {
             slateBlueTheme.ignoresSafeArea()
             
             ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
-                    Text("How It Works")
-                        .font(.headline)
-                        .foregroundColor(.white)
+                VStack(spacing: 24) {
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text("How It Works")
+                            .font(.system(.body, design: .rounded, weight: .bold))
+                            .foregroundColor(.white)
+                        
+                        Text("HRVSpark reads data directly from Apple Health. It performs no diagnosis or algorithmic interpretation—it simply visualizes your raw SDNN measurements.")
+                            .font(.system(size: 14))
+                            .foregroundColor(.gray)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding()
+                    .background(Color.white.opacity(0.05))
+                    .cornerRadius(16)
                     
-                    Text("HRVSpark reads data directly from Apple Health. It performs no diagnosis or algorithmic interpretation—it simply visualizes your raw SDNN measurements.")
-                        .font(.body)
-                        .foregroundColor(.gray)
+                    VStack(alignment: .leading, spacing: 12) {
+                        HStack {
+                            Image(systemName: "lungs.fill")
+                                .foregroundColor(.teal)
+                                .font(.body)
+                            Text("The Mindfulness Workaround")
+                                .font(.system(.body, design: .rounded, weight: .bold))
+                                .foregroundColor(.white)
+                        }
+                        
+                        Text("watchOS restricts how often apps can measure HRV in the background to save battery.")
+                            .font(.system(size: 14))
+                            .foregroundColor(.white)
+                        
+                        Text("To force a new, immediate reading at any time, run a 1-Minute 'Breathe' session in the native Apple Mindfulness app. HRVSpark (and its complications) will automatically detect the new reading within minutes.")
+                            .font(.system(size: 14))
+                            .foregroundColor(.gray)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding()
+                    .background(Color.white.opacity(0.05))
+                    .cornerRadius(16)
                     
-                    Text("The Mindfulness Workaround")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .padding(.top, 10)
+                    VStack(alignment: .leading, spacing: 12) {
+                        HStack {
+                            Image(systemName: "applewatch")
+                                .foregroundColor(.blue)
+                                .font(.body)
+                            Text("Watch History Window")
+                                .font(.system(.body, design: .rounded, weight: .bold))
+                                .foregroundColor(.white)
+                        }
+                        
+                        Text("Your watch may retain a shorter local HRV history than your iPhone.")
+                            .font(.system(size: 14))
+                            .foregroundColor(.white)
+                        
+                        Text("Complications perform best when your iPhone is reachable, because long-term aggregates can be off-loaded to the companion app.")
+                            .font(.system(size: 14))
+                            .foregroundColor(.gray)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding()
+                    .background(Color.white.opacity(0.05))
+                    .cornerRadius(16)
                     
-                    Text("watchOS restricts how often apps can measure HRV in the background to save battery.\n\nTo force a new, immediate reading at any time, run a 1-Minute 'Breathe' session in the native Apple Mindfulness app. HRVSpark (and its complications) will automatically detect the new reading within minutes.")
-                        .font(.body)
-                        .foregroundColor(.gray)
-                    
-                    Divider()
-                        .background(Color.white.opacity(0.3))
-                        .padding(.vertical, 4)
-                    
-                    Text("Watch History Limits")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                    
-                    Text("The watch can show a shorter local HRV history than your iPhone. When your iPhone is reachable, complications can use iPhone-computed long-term data.")
-                        .font(.body)
-                        .foregroundColor(.gray)
+                    VStack(alignment: .leading, spacing: 12) {
+                        HStack {
+                            Image(systemName: "cross.case.fill")
+                                .foregroundColor(.red.opacity(0.8))
+                                .font(.body)
+                            Text("Medical Disclaimer")
+                                .font(.system(.body, design: .rounded, weight: .bold))
+                                .foregroundColor(.white)
+                        }
+                        
+                        Text("HRVSpark is for informational purposes only. It visualizes heart\u{2011}rate variability data generated and stored exclusively on your personal devices\u{2014}no data ever leaves your iPhone or Apple Watch.")
+                            .font(.system(size: 14))
+                            .foregroundColor(.white)
+                        
+                        Text("HRVSpark is not intended to diagnose, treat, cure, or prevent any disease or medical condition. It does not provide medical advice. Always consult a qualified healthcare provider with any questions regarding a medical condition.")
+                            .font(.system(size: 14))
+                            .foregroundColor(.gray)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding()
+                    .background(Color.white.opacity(0.05))
+                    .cornerRadius(16)
                     
                     Spacer(minLength: 40)
                 }
