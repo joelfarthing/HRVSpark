@@ -62,7 +62,9 @@ class StoreKitManager: ObservableObject {
             let products = try await Product.products(for: [StoreKitManager.proProductID])
             proProduct = products.first
         } catch {
-            print("StoreKitManager: Failed to fetch products: \(error)")
+            #if DEBUG
+            print("StoreKitManager: Failed to fetch products: \(error.localizedDescription)")
+            #endif
         }
     }
     
@@ -145,7 +147,9 @@ class StoreKitManager: ObservableObject {
                     await transaction?.finish()
                     await self?.updateEntitlementStatus()
                 } catch {
-                    print("StoreKitManager: Transaction verification failed: \(error)")
+                    #if DEBUG
+                    print("StoreKitManager: Transaction verification failed: \(error.localizedDescription)")
+                    #endif
                 }
             }
         }
