@@ -66,6 +66,7 @@ struct ContentView: View {
                     .font(.system(size: 60))
                     .foregroundColor(.white)
                     .padding(.bottom, 16)
+                    .accessibilityHidden(true)
                 Text("Welcome to HRVSpark")
                     .font(.title)
                     .bold()
@@ -156,6 +157,7 @@ struct ContentView: View {
                                     Image(systemName: "info.circle")
                                         .foregroundColor(.blue)
                                         .font(.system(size: 14, weight: .semibold))
+                                        .accessibilityHidden(true)
                                     Text("Seeing dashes in your line?")
                                         .font(.system(size: 14, weight: .bold))
                                         .foregroundColor(.white)
@@ -198,6 +200,7 @@ struct ContentView: View {
                                 }) {
                                     HStack {
                                         Image(systemName: "lock.fill")
+                                            .accessibilityHidden(true)
                                         if let product = storeKit.proProduct {
                                             Text("Unlock Pro — \(product.displayPrice)")
                                                 .font(.subheadline)
@@ -373,6 +376,7 @@ struct ContentView: View {
                                 Image(systemName: "checkmark.circle.fill")
                                     .foregroundColor(.green)
                             }
+                            .accessibilityElement(children: .combine)
                             
                             HStack {
                                 Text("Apple Watch Paired")
@@ -381,6 +385,7 @@ struct ContentView: View {
                                 Image(systemName: "applewatch")
                                     .foregroundColor(.gray)
                             }
+                            .accessibilityElement(children: .combine)
                             
                             HStack {
                                 Text("Last sync to watch")

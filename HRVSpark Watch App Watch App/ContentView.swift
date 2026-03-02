@@ -61,6 +61,7 @@ struct ContentView: View {
                             HStack(spacing: 4) {
                                 Image(systemName: "iphone")
                                     .font(.system(size: 9))
+                                    .accessibilityHidden(true)
                                 Text("Last Sync:")
                                     .font(.system(size: 9))
                                 if let syncDate = dataManager.lastCompanionContextSyncDate {
@@ -113,6 +114,7 @@ struct ContentView: View {
                                 VStack(spacing: 4) {
                                     HStack {
                                         Image(systemName: "lock.fill")
+                                            .accessibilityHidden(true)
                                         Text("Pro Complications")
                                             .font(.caption)
                                             .fontWeight(.bold)
@@ -195,6 +197,7 @@ struct ContentView: View {
                             NavigationLink(destination: AboutView()) {
                                 HStack {
                                     Image(systemName: "info.circle")
+                                        .accessibilityHidden(true)
                                     Text("About HRV & Apple Watch")
                                 }
                                 .font(.footnote)
@@ -473,6 +476,7 @@ struct AboutView: View {
                             Image(systemName: "lungs.fill")
                                 .foregroundColor(.teal)
                                 .font(.body)
+                                .accessibilityHidden(true)
                             Text("The Mindfulness Workaround")
                                 .font(.system(.body, design: .rounded, weight: .bold))
                                 .foregroundColor(.white)
@@ -496,6 +500,7 @@ struct AboutView: View {
                             Image(systemName: "applewatch")
                                 .foregroundColor(.blue)
                                 .font(.body)
+                                .accessibilityHidden(true)
                             Text("Watch History Window")
                                 .font(.system(.body, design: .rounded, weight: .bold))
                                 .foregroundColor(.white)
@@ -519,6 +524,7 @@ struct AboutView: View {
                             Image(systemName: "cross.case.fill")
                                 .foregroundColor(.red.opacity(0.8))
                                 .font(.body)
+                                .accessibilityHidden(true)
                             Text("Medical Disclaimer")
                                 .font(.system(.body, design: .rounded, weight: .bold))
                                 .foregroundColor(.white)
