@@ -24,7 +24,7 @@ struct ContentView: View {
             TabView {
                 dashboardTab
                     .tabItem {
-                        Label("Dashboard", systemImage: "waveform.path.ecg")
+                        Label("Gallery", systemImage: "waveform.path.ecg")
                     }
                 
                 engineTab
@@ -113,7 +113,7 @@ struct ContentView: View {
                             .padding(.bottom, 4)
                         
                         Text("LIVE COMPLICATIONS GALLERY")
-                            .font(.system(size: 13, weight: .bold, design: .monospaced))
+                            .font(.system(size: 15, weight: .bold, design: .monospaced))
                             .foregroundColor(.white)
                             .shadow(color: Color(red: 0.20, green: 0.55, blue: 1.0).opacity(1.0), radius: 4, x: 0, y: 0)
                             .shadow(color: Color(red: 0.20, green: 0.55, blue: 1.0).opacity(0.7), radius: 13, x: 0, y: 0)
@@ -121,6 +121,13 @@ struct ContentView: View {
                             .tracking(2)
                             .frame(maxWidth: .infinity, alignment: .center)
                             .padding(.top, 8)
+                            .padding(.bottom, 2)
+                        
+                        Text("Long-press your watch face \u{2192} tap a slot \u{2192} choose HRVSpark")
+                            .font(.system(size: 12))
+                            .foregroundColor(.gray.opacity(0.7))
+                            .multilineTextAlignment(.center)
+                            .frame(maxWidth: .infinity, alignment: .center)
                             .padding(.bottom, 4)
                         
                         VStack(spacing: 16) {
@@ -453,6 +460,15 @@ struct ContentView: View {
                                 subtitle: nil,
                                 bodyText: "HRVSpark reads data directly from Apple Health. It performs no diagnosis or algorithmic interpretation—it simply visualizes your raw SDNN measurements.",
                                 secondaryBodyText: nil
+                            )
+                            
+                            infoCard(
+                                title: "How to Install Complications",
+                                iconName: "applewatch.side.right",
+                                iconColor: .blue,
+                                subtitle: nil,
+                                bodyText: "1. Long-press your watch face and tap Edit.\n2. Swipe to the Complications page.\n3. Tap an empty slot and scroll to HRVSpark.\n4. Choose any complication from the gallery.",
+                                secondaryBodyText: "Each complication has a unique ID (R1, G2, C1, etc.) that matches the Gallery tab for easy reference."
                             )
                             
                             infoCard(

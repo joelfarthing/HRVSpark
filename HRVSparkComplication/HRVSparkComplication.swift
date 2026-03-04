@@ -155,11 +155,24 @@ struct GenericCornerComplicationView: View {
         let calculatedMax = validData.max() ?? 100
         let maxVal = max(calculatedMax, current) + 1
         
-        // Main content: label (watchOS auto-sizes in accessoryCorner)
-        Text("HRV")
-            .font(.system(size: 10, weight: .bold))
-            .foregroundColor(.gray)
-            .widgetCurvesContent()
+        // Main content: Big Number (watchOS auto-sizes in accessoryCorner)
+        Group {
+            if let val = currentValue {
+                Text("\(val)")
+                    .font(.system(.title3, design: .monospaced, weight: .bold))
+                    .minimumScaleFactor(0.5)
+                    .lineLimit(1)
+                    .foregroundColor(.white)
+                    .shadow(color: Color(red: 0.20, green: 0.55, blue: 1.0).opacity(1.0), radius: 4, x: 0, y: 0)
+                    .shadow(color: Color(red: 0.20, green: 0.55, blue: 1.0).opacity(0.7), radius: 13, x: 0, y: 0)
+                    .shadow(color: Color(red: 0.20, green: 0.55, blue: 1.0).opacity(0.5), radius: 23, x: 0, y: 0)
+            } else {
+                Text("--")
+                    .font(.system(.title3, design: .monospaced, weight: .bold))
+                    .foregroundColor(.white)
+            }
+        }
+        .widgetCurvesContent()
         // Widget label: gauge renders as curved arc hugging the outer corner rim
         .widgetLabel {
             Gauge(value: current, in: minVal...maxVal) {

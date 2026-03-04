@@ -63,6 +63,24 @@ public struct SparklineView: View {
                     }
                     .stroke(Color.white.opacity(0.4), style: StrokeStyle(lineWidth: 1.5, lineCap: .round, lineJoin: .round, dash: [4, 4]))
                     
+                    // 1b. Draw Edge Dashed Lines (missing data at left/right boundaries)
+                    Path { path in
+                        guard !points.isEmpty else { return }
+                        
+                        // Left edge: if first data point isn't at index 0, draw horizontal dash from left edge
+                        if let first = points.first, first.index > 0 {
+                            path.move(to: CGPoint(x: 0, y: first.point.y))
+                            path.addLine(to: first.point)
+                        }
+                        
+                        // Right edge: if last data point isn't at the final index, draw horizontal dash to right edge
+                        if let last = points.last, last.index < data.count - 1 {
+                            path.move(to: last.point)
+                            path.addLine(to: CGPoint(x: geometry.size.width, y: last.point.y))
+                        }
+                    }
+                    .stroke(Color.white.opacity(0.4), style: StrokeStyle(lineWidth: 1.5, lineCap: .round, lineJoin: .round, dash: [4, 4]))
+                    
                     // 2. Draw Solid Contiguous Curves
                     // Build the path once, reuse for fringe + main stroke
                     let solidPath = Path { path in
