@@ -203,17 +203,22 @@ struct ContentView: View {
                                         try? await storeKit.purchase()
                                     }
                                 }) {
-                                    HStack {
-                                        Image(systemName: "lock.fill")
-                                        if let product = storeKit.proProduct {
-                                            Text("Unlock Pro — \(product.displayPrice)")
-                                                .font(.subheadline)
-                                                .fontWeight(.bold)
-                                        } else {
-                                            Text("Unlock Pro Complications & Dashboard")
-                                                .font(.subheadline)
-                                                .fontWeight(.bold)
+                                    VStack(spacing: 4) {
+                                        HStack {
+                                            Image(systemName: "lock.fill")
+                                            if let product = storeKit.proProduct {
+                                                Text("Unlock All Complications — \(product.displayPrice)")
+                                                    .font(.subheadline)
+                                                    .fontWeight(.bold)
+                                            } else {
+                                                Text("Unlock All Complications")
+                                                    .font(.subheadline)
+                                                    .fontWeight(.bold)
+                                            }
                                         }
+                                        Text("One-time purchase · No subscription")
+                                            .font(.caption2)
+                                            .foregroundColor(.gray.opacity(0.8))
                                     }
                                     .frame(maxWidth: .infinity)
                                     .padding()
@@ -248,81 +253,88 @@ struct ContentView: View {
                                     .fontWeight(.bold)
                                     .foregroundColor(.green)
                                     .frame(maxWidth: .infinity, alignment: .center)
-                                
-                                // ==========================================
-                                // MARK: PRO TIER
-                                // ==========================================
-                                
-                                // R2: 24H Hourly Sparkline (1H Avg Highlight)
-                                sparklineCard(
-                                    id: "R2",
-                                    title: "24H PER-HOUR AVG + 1H AVG",
-                                    timeframeLabel: "24H",
-                                    data: dataManager.hourlyAverages8Hours,
-                                    reading: dataManager.proCard2Reading,
-                                    caption: "Hourly averages over the last 24 hours. Big number: your rolling 60-minute average HRV."
-                                )
-                                
-                                // R3: 24H Hourly Sparkline (24H Avg Highlight)
-                                sparklineCard(
-                                    id: "R3",
-                                    title: "24H PER-HOUR AVG + 24H AVG",
-                                    timeframeLabel: "24H",
-                                    data: dataManager.hourlyAverages8Hours,
-                                    reading: dataManager.proCard3Reading,
-                                    caption: "Hourly averages over the last 24 hours. Big number: your rolling 24-hour average HRV."
-                                )
-                                
-                                // R4: 7D Daily Sparkline
-                                sparklineCard(
-                                    id: "R4",
-                                    title: "7D PER-DAY AVG + 24H AVG",
-                                    timeframeLabel: "7D",
-                                    data: dataManager.dailyAverages7Days,
-                                    reading: dataManager.proCard3Reading,
-                                    caption: "Daily averages over the last 7 days. Big number: your rolling 24-hour average HRV."
-                                )
-                                
-                                // R5: 30D Daily Sparkline
-                                sparklineCard(
-                                    id: "R5",
-                                    title: "1M PER-DAY AVG + 24H AVG",
-                                    timeframeLabel: "1M",
-                                    data: dataManager.dailyAverages30Days,
-                                    reading: dataManager.proCard4Reading,
-                                    caption: "Daily averages over the last 30 days. Big number: your rolling 24-hour average HRV."
-                                )
-                                
-                                // G2: 24H Gauge (1H Avg Highlight)
-                                gaugeCard(
-                                    id: "G2",
-                                    title: "24H RANGE + 1H AVG",
-                                    timeframeLabel: "24H",
-                                    data: dataManager.hourlyAverages8Hours,
-                                    reading: dataManager.proCard2Reading,
-                                    caption: "Your current 1-hour rolling average within the full 24-hour min/max range"
-                                )
-                                
-                                // G3: 7D Gauge
-                                gaugeCard(
-                                    id: "G3",
-                                    title: "7D RANGE + 24H AVG",
-                                    timeframeLabel: "7D",
-                                    data: dataManager.dailyAverages7Days,
-                                    reading: dataManager.proCard3Reading,
-                                    caption: "Your 24-hour average within your 7-day min/max range"
-                                )
-                                
-                                // G4: 30D Gauge
-                                gaugeCard(
-                                    id: "G4",
-                                    title: "1M RANGE + 24H AVG",
-                                    timeframeLabel: "1M",
-                                    data: dataManager.dailyAverages30Days,
-                                    reading: dataManager.proCard4Reading,
-                                    caption: "Your 24-hour average within your 30-day min/max range"
-                                )
                             }
+                            
+                            // ==========================================
+                            // MARK: PRO TIER (always visible, blurred when locked)
+                            // ==========================================
+                            
+                            // R2: 24H Hourly Sparkline (1H Avg Highlight)
+                            sparklineCard(
+                                id: "R2",
+                                title: "24H PER-HOUR AVG + 1H AVG",
+                                timeframeLabel: "24H",
+                                data: dataManager.hourlyAverages8Hours,
+                                reading: dataManager.proCard2Reading,
+                                caption: "Hourly averages over the last 24 hours. Big number: your rolling 60-minute average HRV.",
+                                locked: !storeKit.isProUnlocked
+                            )
+                            
+                            // R3: 24H Hourly Sparkline (24H Avg Highlight)
+                            sparklineCard(
+                                id: "R3",
+                                title: "24H PER-HOUR AVG + 24H AVG",
+                                timeframeLabel: "24H",
+                                data: dataManager.hourlyAverages8Hours,
+                                reading: dataManager.proCard3Reading,
+                                caption: "Hourly averages over the last 24 hours. Big number: your rolling 24-hour average HRV.",
+                                locked: !storeKit.isProUnlocked
+                            )
+                            
+                            // R4: 7D Daily Sparkline
+                            sparklineCard(
+                                id: "R4",
+                                title: "7D PER-DAY AVG + 24H AVG",
+                                timeframeLabel: "7D",
+                                data: dataManager.dailyAverages7Days,
+                                reading: dataManager.proCard3Reading,
+                                caption: "Daily averages over the last 7 days. Big number: your rolling 24-hour average HRV.",
+                                locked: !storeKit.isProUnlocked
+                            )
+                            
+                            // R5: 30D Daily Sparkline
+                            sparklineCard(
+                                id: "R5",
+                                title: "1M PER-DAY AVG + 24H AVG",
+                                timeframeLabel: "1M",
+                                data: dataManager.dailyAverages30Days,
+                                reading: dataManager.proCard4Reading,
+                                caption: "Daily averages over the last 30 days. Big number: your rolling 24-hour average HRV.",
+                                locked: !storeKit.isProUnlocked
+                            )
+                            
+                            // G2: 24H Gauge (1H Avg Highlight)
+                            gaugeCard(
+                                id: "G2",
+                                title: "24H RANGE + 1H AVG",
+                                timeframeLabel: "24H",
+                                data: dataManager.hourlyAverages8Hours,
+                                reading: dataManager.proCard2Reading,
+                                caption: "Your current 1-hour rolling average within the full 24-hour min/max range",
+                                locked: !storeKit.isProUnlocked
+                            )
+                            
+                            // G3: 7D Gauge
+                            gaugeCard(
+                                id: "G3",
+                                title: "7D RANGE + 24H AVG",
+                                timeframeLabel: "7D",
+                                data: dataManager.dailyAverages7Days,
+                                reading: dataManager.proCard3Reading,
+                                caption: "Your 24-hour average within your 7-day min/max range",
+                                locked: !storeKit.isProUnlocked
+                            )
+                            
+                            // G4: 30D Gauge
+                            gaugeCard(
+                                id: "G4",
+                                title: "1M RANGE + 24H AVG",
+                                timeframeLabel: "1M",
+                                data: dataManager.dailyAverages30Days,
+                                reading: dataManager.proCard4Reading,
+                                caption: "Your 24-hour average within your 30-day min/max range",
+                                locked: !storeKit.isProUnlocked
+                            )
                         }
                         .padding()
                     }
@@ -498,6 +510,49 @@ struct ContentView: View {
                                 secondaryBodyText: nil
                             )
                             
+                            // MARK: - Tip Jar (visible only to Pro users)
+                            if storeKit.isProUnlocked {
+                                VStack(spacing: 10) {
+                                    Text("☕")
+                                        .font(.title2)
+                                    
+                                    Text("Support Indie Development")
+                                        .font(.subheadline)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(.white)
+                                    
+                                    Text("HRVSpark is built by a solo developer who believes health data belongs to you — no scores, no verdicts, no subscriptions. If you enjoy this approach, a tip helps make more no-verdict apps possible.")
+                                        .font(.caption)
+                                        .foregroundColor(.gray)
+                                        .multilineTextAlignment(.center)
+                                    
+                                    if let tipProduct = storeKit.tipJarProduct {
+                                        Button(action: {
+                                            Task { try? await storeKit.purchaseTipJar() }
+                                        }) {
+                                            Text("Buy the Developer a Coffee — \(tipProduct.displayPrice)")
+                                                .font(.subheadline)
+                                                .fontWeight(.semibold)
+                                                .foregroundColor(.white)
+                                                .frame(maxWidth: .infinity)
+                                                .padding(.vertical, 10)
+                                                .background(Color.blue.opacity(0.3))
+                                                .cornerRadius(10)
+                                        }
+                                        .buttonStyle(.plain)
+                                    }
+                                    
+                                    if let status = storeKit.statusMessage {
+                                        Text(status)
+                                            .font(.caption)
+                                            .foregroundColor(.green)
+                                    }
+                                }
+                                .padding()
+                                .background(Color.white.opacity(0.05))
+                                .cornerRadius(16)
+                            }
+                            
                             Spacer(minLength: 40)
                         }
                         .padding()
@@ -587,7 +642,8 @@ struct ContentView: View {
         data: [Double?],
         reading: Int?,
         caption: String,
-        maxContiguousGap: Int = 1
+        maxContiguousGap: Int = 1,
+        locked: Bool = false
     ) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             VStack(alignment: .leading) {
@@ -623,6 +679,7 @@ struct ContentView: View {
                 }
                 .frame(height: 100)
                 .padding(.top, 8)
+                .blur(radius: locked ? 6 : 0)
             }
             .padding()
             .background(Color.white.opacity(0.05))
@@ -644,7 +701,8 @@ struct ContentView: View {
         timeframeLabel: String,
         data: [Double?],
         reading: Int?,
-        caption: String
+        caption: String,
+        locked: Bool = false
     ) -> some View {
         VStack(alignment: .leading) {
             HStack(spacing: 8) {
@@ -669,6 +727,7 @@ struct ContentView: View {
                 Spacer()
             }
             .padding(.top, 8)
+            .blur(radius: locked ? 6 : 0)
         }
         .padding()
         .background(Color.white.opacity(0.05))

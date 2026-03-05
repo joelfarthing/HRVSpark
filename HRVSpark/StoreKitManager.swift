@@ -1,6 +1,8 @@
 import Foundation
 import StoreKit
 import Combine
+import WatchConnectivity
+import WidgetKit
 
 /// Manages IAP for the Pro unlock using StoreKit 2.
 /// Persists entitlement to App Group UserDefaults so the complication extension can read it.
@@ -13,15 +15,11 @@ class StoreKitManager: ObservableObject {
     static let appGroupID = "group.com.filamentlabs.HRVSpark"
     static let proUnlockedKey = "isProUnlocked"
     
-    // MARK: - Beta Auto-Unlock (TEMPORARY — remove before production paid launch)
-    /// Returns true when running as a TestFlight beta build.
-    static var isTestFlight: Bool {
-        guard let receiptURL = Bundle.main.appStoreReceiptURL else { return true }
-        return receiptURL.lastPathComponent == "sandboxReceipt"
-    }
+    static let tipJarProductID = "com.filamentlabs.HRVSpark.tipjar"
     
     @Published var isProUnlocked: Bool = false
     @Published var proProduct: Product?
+    @Published var tipJarProduct: Product?
     @Published var purchaseInProgress: Bool = false
     @Published var statusMessage: String?
     
@@ -32,14 +30,8 @@ class StoreKitManager: ObservableObject {
     }
     
     private init() {
-        // Beta auto-unlock: grant Pro to all TestFlight testers (TEMPORARY)
-        if StoreKitManager.isTestFlight {
-            isProUnlocked = true
-            sharedDefaults?.set(true, forKey: StoreKitManager.proUnlockedKey)
-        } else {
-            // Read cached entitlement from App Group
-            isProUnlocked = sharedDefaults?.bool(forKey: StoreKitManager.proUnlockedKey) ?? false
-        }
+        // Read cached entitlement from App Group
+        isProUnlocked = sharedDefaults?.bool(forKey: StoreKitManager.proUnlockedKey) ?? false
         
         // Start listening for transaction updates (family sharing, refunds, etc.)
         transactionListener = listenForTransactions()
@@ -59,8 +51,12 @@ class StoreKitManager: ObservableObject {
     
     func fetchProduct() async {
         do {
-            let products = try await Product.products(for: [StoreKitManager.proProductID])
-            proProduct = products.first
+            let products = try await Product.products(for: [
+                StoreKitManager.proProductID,
+                StoreKitManager.tipJarProductID
+            ])
+            proProduct = products.first { $0.id == StoreKitManager.proProductID }
+            tipJarProduct = products.first { $0.id == StoreKitManager.tipJarProductID }
         } catch {
             #if DEBUG
             print("StoreKitManager: Failed to fetch products: \(error.localizedDescription)")
@@ -90,7 +86,10 @@ class StoreKitManager: ObservableObject {
         case .success(let verification):
             let transaction = try checkVerified(verification)
             await transaction.finish()
-            await updateEntitlementStatus()
+            // Directly unlock — we've already verified the transaction
+            isProUnlocked = true
+            sharedDefaults?.set(true, forKey: StoreKitManager.proUnlockedKey)
+            syncProStatusToWatch(true)
             
         case .userCancelled:
             break
@@ -111,15 +110,21 @@ class StoreKitManager: ObservableObject {
         await updateEntitlementStatus()
     }
     
+    // MARK: - Tip Jar
+    
+    func purchaseTipJar() async throws {
+        guard let product = tipJarProduct else { return }
+        let result = try await product.purchase()
+        if case .success(let verification) = result {
+            let transaction = try checkVerified(verification)
+            await transaction.finish()
+            statusMessage = "Thank you! ☕"
+        }
+    }
+    
     // MARK: - Entitlement Check
     
     func updateEntitlementStatus() async {
-        // Don't overwrite beta auto-unlock with real entitlement check
-        if StoreKitManager.isTestFlight {
-            isProUnlocked = true
-            sharedDefaults?.set(true, forKey: StoreKitManager.proUnlockedKey)
-            return
-        }
         let entitled = await checkEntitlement()
         isProUnlocked = entitled
         sharedDefaults?.set(entitled, forKey: StoreKitManager.proUnlockedKey)
@@ -164,5 +169,19 @@ class StoreKitManager: ObservableObject {
         case .verified(let value):
             return value
         }
+    }
+    
+    // MARK: - Watch Sync
+    
+    nonisolated private func syncProStatusToWatch(_ unlocked: Bool) {
+        guard WCSession.isSupported() else { return }
+        let session = WCSession.default
+        guard session.activationState == .activated else { return }
+        
+        // transferUserInfo is queued and delivers reliably even if watch is not currently reachable
+        session.transferUserInfo(["isProUnlocked": unlocked])
+        
+        // Reload complications so locked ones refresh
+        WidgetCenter.shared.reloadAllTimelines()
     }
 }

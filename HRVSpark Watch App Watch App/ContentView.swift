@@ -5,8 +5,13 @@ struct ContentView: View {
     @Environment(\.scenePhase) var scenePhase
     @State private var dataManager = HRVDataManager()
     
-    // BETA AUTO-UNLOCK (TEMPORARY — remove before production paid launch)
-    @State private var isProUnlocked: Bool = true
+    @State private var isProUnlocked: Bool = {
+        let defaults = UserDefaults(suiteName: "group.com.filamentlabs.HRVSpark")
+        return defaults?.bool(forKey: "isProUnlocked") ?? false
+    }()
+    
+    // Receive Pro status from iPhone via WatchConnectivity
+    private let proReceiver = ProStatusReceiver.shared
     
     // Design System
     let slateBlueTheme = LinearGradient(
@@ -133,62 +138,74 @@ struct ContentView: View {
                                     .fontWeight(.bold)
                                     .foregroundColor(.green)
                                     .frame(maxWidth: .infinity, alignment: .center)
-                                
-                                watchSparklineCard(
-                                    id: "R2",
-                                    title: "24H PER-HOUR AVG + 1H AVG",
-                                    timeframeLabel: "24H",
-                                    data: dataManager.hourlyAverages8Hours,
-                                    reading: dataManager.proCard2Reading
-                                )
-                                
-                                watchSparklineCard(
-                                    id: "R3",
-                                    title: "24H PER-HOUR AVG + 24H AVG",
-                                    timeframeLabel: "24H",
-                                    data: dataManager.hourlyAverages8Hours,
-                                    reading: dataManager.proCard3Reading
-                                )
-                                
-                                watchSparklineCard(
-                                    id: "R4",
-                                    title: "7D PER-DAY AVG + 24H AVG",
-                                    timeframeLabel: "7D",
-                                    data: dataManager.dailyAverages7Days,
-                                    reading: dataManager.proCard3Reading
-                                )
-                                
-                                watchSparklineCard(
-                                    id: "R5",
-                                    title: "1M PER-DAY AVG + 24H AVG",
-                                    timeframeLabel: "1M",
-                                    data: dataManager.dailyAverages30Days,
-                                    reading: dataManager.proCard4Reading
-                                )
-                                
-                                watchGaugeCard(
-                                    id: "G2",
-                                    title: "24H RANGE + 1H AVG",
-                                    timeframeLabel: "24H",
-                                    data: dataManager.hourlyAverages8Hours,
-                                    reading: dataManager.proCard2Reading
-                                )
-                                
-                                watchGaugeCard(
-                                    id: "G3",
-                                    title: "7D RANGE + 24H AVG",
-                                    timeframeLabel: "7D",
-                                    data: dataManager.dailyAverages7Days,
-                                    reading: dataManager.proCard3Reading
-                                )
-                                
-                                watchGaugeCard(
-                                    id: "G4",
-                                    title: "1M RANGE + 24H AVG",
-                                    timeframeLabel: "1M",
-                                    data: dataManager.dailyAverages30Days,
-                                    reading: dataManager.proCard4Reading
-                                )
+                            }
+                            
+                            ZStack {
+                                VStack(spacing: 8) {
+                                    watchSparklineCard(
+                                        id: "R2",
+                                        title: "24H PER-HOUR AVG + 1H AVG",
+                                        timeframeLabel: "24H",
+                                        data: dataManager.hourlyAverages8Hours,
+                                        reading: dataManager.proCard2Reading,
+                                        locked: !isProUnlocked
+                                    )
+                                    
+                                    watchSparklineCard(
+                                        id: "R3",
+                                        title: "24H PER-HOUR AVG + 24H AVG",
+                                        timeframeLabel: "24H",
+                                        data: dataManager.hourlyAverages8Hours,
+                                        reading: dataManager.proCard3Reading,
+                                        locked: !isProUnlocked
+                                    )
+                                    
+                                    watchSparklineCard(
+                                        id: "R4",
+                                        title: "7D PER-DAY AVG + 24H AVG",
+                                        timeframeLabel: "7D",
+                                        data: dataManager.dailyAverages7Days,
+                                        reading: dataManager.proCard3Reading,
+                                        locked: !isProUnlocked
+                                    )
+                                    
+                                    watchSparklineCard(
+                                        id: "R5",
+                                        title: "1M PER-DAY AVG + 24H AVG",
+                                        timeframeLabel: "1M",
+                                        data: dataManager.dailyAverages30Days,
+                                        reading: dataManager.proCard4Reading,
+                                        locked: !isProUnlocked
+                                    )
+                                    
+                                    watchGaugeCard(
+                                        id: "G2",
+                                        title: "24H RANGE + 1H AVG",
+                                        timeframeLabel: "24H",
+                                        data: dataManager.hourlyAverages8Hours,
+                                        reading: dataManager.proCard2Reading,
+                                        locked: !isProUnlocked
+                                    )
+                                    
+                                    watchGaugeCard(
+                                        id: "G3",
+                                        title: "7D RANGE + 24H AVG",
+                                        timeframeLabel: "7D",
+                                        data: dataManager.dailyAverages7Days,
+                                        reading: dataManager.proCard3Reading,
+                                        locked: !isProUnlocked
+                                    )
+                                    
+                                    watchGaugeCard(
+                                        id: "G4",
+                                        title: "1M RANGE + 24H AVG",
+                                        timeframeLabel: "1M",
+                                        data: dataManager.dailyAverages30Days,
+                                        reading: dataManager.proCard4Reading,
+                                        locked: !isProUnlocked
+                                    )
+                                }
+                                .allowsHitTesting(isProUnlocked)
                             }
                             
                             // ---- ABOUT BUTTON ----
@@ -215,10 +232,16 @@ struct ContentView: View {
         }
         .onAppear {
             dataManager.requestAuthorization { _ in }
+            
+            // Listen for Pro unlock from iPhone
+            proReceiver.onProStatusChanged = { unlocked in
+                isProUnlocked = unlocked
+            }
         }
         .onChange(of: scenePhase) { oldPhase, newPhase in
             if newPhase == .active {
-                isProUnlocked = true
+                let defaults = UserDefaults(suiteName: "group.com.filamentlabs.HRVSpark")
+                isProUnlocked = defaults?.bool(forKey: "isProUnlocked") ?? false
                 
                 if dataManager.isAuthorized {
                     dataManager.fetchAllData()
@@ -242,7 +265,8 @@ struct ContentView: View {
     
     private func watchSparklineCard(
         id: String, title: String, timeframeLabel: String,
-        data: [Double?], reading: Int?, maxContiguousGap: Int = 1
+        data: [Double?], reading: Int?, maxContiguousGap: Int = 1,
+        locked: Bool = false
     ) -> some View {
         VStack(alignment: .leading, spacing: 4) {
             HStack(spacing: 4) {
@@ -292,6 +316,7 @@ struct ContentView: View {
                 .layoutPriority(1)
             }
             .frame(height: 50)
+            .blur(radius: locked ? 6 : 0)
         }
         .padding(8)
         .background(Color.white.opacity(0.05))
@@ -300,7 +325,8 @@ struct ContentView: View {
     
     private func watchGaugeCard(
         id: String, title: String, timeframeLabel: String,
-        data: [Double?], reading: Int?
+        data: [Double?], reading: Int?,
+        locked: Bool = false
     ) -> some View {
         VStack(alignment: .leading, spacing: 4) {
             HStack(spacing: 4) {
@@ -319,6 +345,7 @@ struct ContentView: View {
                 Spacer()
             }
             .frame(height: 54)
+            .blur(radius: locked ? 6 : 0)
         }
         .padding(8)
         .background(Color.white.opacity(0.05))

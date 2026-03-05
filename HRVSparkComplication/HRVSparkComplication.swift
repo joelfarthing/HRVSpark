@@ -284,14 +284,55 @@ struct FreeCornerComplication: Widget {
     }
 }
 
+// MARK: - Pro Gate Helper
+
+private func isProUnlocked() -> Bool {
+    let defaults = UserDefaults(suiteName: "group.com.filamentlabs.HRVSpark")
+    return defaults?.bool(forKey: "isProUnlocked") ?? false
+}
+
+struct LockedRectangularView: View {
+    var body: some View {
+        HStack(spacing: 6) {
+            Image(systemName: "lock.fill")
+                .font(.title3)
+                .foregroundColor(.gray)
+            VStack(alignment: .leading, spacing: 2) {
+                Text("PRO")
+                    .font(.system(size: 11, weight: .bold, design: .monospaced))
+                    .foregroundColor(.white.opacity(0.7))
+                Text("Unlock in iPhone app")
+                    .font(.system(size: 9))
+                    .foregroundColor(.gray)
+            }
+        }
+    }
+}
+
+struct LockedCircularView: View {
+    var body: some View {
+        ZStack {
+            AccessoryWidgetBackground()
+            Image(systemName: "lock.fill")
+                .font(.title3)
+                .foregroundColor(.gray)
+        }
+    }
+}
+
 // MARK: - 2. PRO TIER (24H / DAILY)
 
 struct ProHourlyComplication: Widget {
     let kind: String = "ProHourlyComplication"
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            GenericRectangularComplicationView(currentValue: entry.rollingAvg1h, dataArray: entry.hourlyAverages24h, timeframeLabel: "1D")
-                .containerBackground(.clear, for: .widget)
+            if isProUnlocked() {
+                GenericRectangularComplicationView(currentValue: entry.rollingAvg1h, dataArray: entry.hourlyAverages24h, timeframeLabel: "1D")
+                    .containerBackground(.clear, for: .widget)
+            } else {
+                LockedRectangularView()
+                    .containerBackground(.clear, for: .widget)
+            }
         }
         .configurationDisplayName("R2: 24H PER-HOUR AVG + 1H AVG")
         .description("A sparkline of your hourly HRV averages over the last 24 hours, plus your current 1-hour rolling average. Reveals daily rhythm patterns.")
@@ -303,8 +344,13 @@ struct ProHourlyGaugeComplication: Widget {
     let kind: String = "ProHourlyGaugeComplication"
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            GenericCircularComplicationView(currentValue: entry.rollingAvg1h, dataArray: entry.hourlyAverages24h, timeframeLabel: "1D")
-                .containerBackground(.clear, for: .widget)
+            if isProUnlocked() {
+                GenericCircularComplicationView(currentValue: entry.rollingAvg1h, dataArray: entry.hourlyAverages24h, timeframeLabel: "1D")
+                    .containerBackground(.clear, for: .widget)
+            } else {
+                LockedCircularView()
+                    .containerBackground(.clear, for: .widget)
+            }
         }
         .configurationDisplayName("G2: 24H RANGE + 1H AVG")
         .description("A circular gauge placing your current 1-hour rolling average within the full 24-hour min/max range. See how your current state compares to your day.")
@@ -316,8 +362,13 @@ struct ProDailyBaselineComplication: Widget {
     let kind: String = "ProDailyBaselineComplication"
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            GenericRectangularComplicationView(currentValue: entry.rollingAvg24h, dataArray: entry.hourlyAverages24h, timeframeLabel: "24H")
-                .containerBackground(.clear, for: .widget)
+            if isProUnlocked() {
+                GenericRectangularComplicationView(currentValue: entry.rollingAvg24h, dataArray: entry.hourlyAverages24h, timeframeLabel: "24H")
+                    .containerBackground(.clear, for: .widget)
+            } else {
+                LockedRectangularView()
+                    .containerBackground(.clear, for: .widget)
+            }
         }
         .configurationDisplayName("R3: 24H PER-HOUR AVG + 24H AVG")
         .description("A sparkline of hourly averages over the last 24 hours, paired with your 24-hour rolling average. Useful for tracking your daily baseline trend.")
@@ -331,8 +382,13 @@ struct Pro7DayComplication: Widget {
     let kind: String = "Pro7DayComplication"
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            GenericRectangularComplicationView(currentValue: entry.rollingAvg24h, dataArray: entry.dailyAverages7d, timeframeLabel: "7D")
-                .containerBackground(.clear, for: .widget)
+            if isProUnlocked() {
+                GenericRectangularComplicationView(currentValue: entry.rollingAvg24h, dataArray: entry.dailyAverages7d, timeframeLabel: "7D")
+                    .containerBackground(.clear, for: .widget)
+            } else {
+                LockedRectangularView()
+                    .containerBackground(.clear, for: .widget)
+            }
         }
         .configurationDisplayName("R4: 7D PER-DAY AVG + 24H AVG")
         .description("A sparkline of your daily HRV averages over the last 7 days, with your current 24-hour rolling average. Ideal for spotting weekly recovery and stress patterns at a glance.")
@@ -344,8 +400,13 @@ struct Pro7DayGaugeComplication: Widget {
     let kind: String = "Pro7DayGaugeComplication"
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            GenericCircularComplicationView(currentValue: entry.rollingAvg24h, dataArray: entry.dailyAverages7d, timeframeLabel: "7D")
-                .containerBackground(.clear, for: .widget)
+            if isProUnlocked() {
+                GenericCircularComplicationView(currentValue: entry.rollingAvg24h, dataArray: entry.dailyAverages7d, timeframeLabel: "7D")
+                    .containerBackground(.clear, for: .widget)
+            } else {
+                LockedCircularView()
+                    .containerBackground(.clear, for: .widget)
+            }
         }
         .configurationDisplayName("G3: 7D RANGE + 24H AVG")
         .description("A circular gauge showing where your current 24-hour average sits within your 7-day min/max range. Great for weekly context on your current state.")
@@ -357,8 +418,13 @@ struct Pro30DayComplication: Widget {
     let kind: String = "Pro30DayComplication"
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            GenericRectangularComplicationView(currentValue: entry.rollingAvg24h, dataArray: entry.dailyAverages30d, timeframeLabel: "1M")
-                .containerBackground(.clear, for: .widget)
+            if isProUnlocked() {
+                GenericRectangularComplicationView(currentValue: entry.rollingAvg24h, dataArray: entry.dailyAverages30d, timeframeLabel: "1M")
+                    .containerBackground(.clear, for: .widget)
+            } else {
+                LockedRectangularView()
+                    .containerBackground(.clear, for: .widget)
+            }
         }
         .configurationDisplayName("R5: 1M PER-DAY AVG + 24H AVG")
         .description("A sparkline of your daily HRV averages over the last 30 days, with your current 24-hour rolling average. The broadest view of your long-term recovery and readiness trend.")
@@ -370,11 +436,17 @@ struct Pro30DayGaugeComplication: Widget {
     let kind: String = "Pro30DayGaugeComplication"
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            GenericCircularComplicationView(currentValue: entry.rollingAvg24h, dataArray: entry.dailyAverages30d, timeframeLabel: "1M")
-                .containerBackground(.clear, for: .widget)
+            if isProUnlocked() {
+                GenericCircularComplicationView(currentValue: entry.rollingAvg24h, dataArray: entry.dailyAverages30d, timeframeLabel: "1M")
+                    .containerBackground(.clear, for: .widget)
+            } else {
+                LockedCircularView()
+                    .containerBackground(.clear, for: .widget)
+            }
         }
         .configurationDisplayName("G4: 1M RANGE + 24H AVG")
         .description("A circular gauge showing where your current 24-hour average falls within your 30-day min/max range. Your long-term readiness at a glance.")
         .supportedFamilies([.accessoryCircular])
     }
 }
+

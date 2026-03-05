@@ -18,6 +18,7 @@
 		E05C34062F4B69030053B87E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E05C34052F4B69030053B87E /* WidgetKit.framework */; };
 		E05C34082F4B69030053B87E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E05C34072F4B69030053B87E /* SwiftUI.framework */; };
 		E05C34132F4B69040053B87E /* HRVSparkComplicationExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E05C34032F4B69030053B87E /* HRVSparkComplicationExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E0632BF82F5915F000AD5C5A /* HRVSpark.storekit in Resources */ = {isa = PBXBuildFile; fileRef = E0632BF72F5915F000AD5C5A /* HRVSpark.storekit */; };
 		E0BDB2AA2F4B668000CC0CD4 /* HRVSpark Watch App Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = E0BDB2A02F4B667E00CC0CD4 /* HRVSpark Watch App Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F73C4BE399751FE2430764BA /* HRVDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE44F288E2240607F712E3E /* HRVDataManager.swift */; };
 /* End PBXBuildFile section */
@@ -77,6 +78,7 @@
 		E05C34052F4B69030053B87E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		E05C34072F4B69030053B87E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		E05C341B2F4B6A100053B87E /* HRVSparkComplicationExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HRVSparkComplicationExtension.entitlements; sourceTree = "<group>"; };
+		E0632BF72F5915F000AD5C5A /* HRVSpark.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = HRVSpark.storekit; sourceTree = "<group>"; };
 		E0BDB28E2F4B644600CC0CD4 /* HRVSpark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HRVSpark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0BDB2A02F4B667E00CC0CD4 /* HRVSpark Watch App Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HRVSpark Watch App Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFE44F288E2240607F712E3E /* HRVDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HRVDataManager.swift; path = "HRVSpark Watch App Watch App/HRVDataManager.swift"; sourceTree = SOURCE_ROOT; };
@@ -152,6 +154,7 @@
 		E0BDB2852F4B644600CC0CD4 = {
 			isa = PBXGroup;
 			children = (
+				E0632BF72F5915F000AD5C5A /* HRVSpark.storekit */,
 				E05C341B2F4B6A100053B87E /* HRVSparkComplicationExtension.entitlements */,
 				E0BDB2902F4B644600CC0CD4 /* HRVSpark */,
 				E0BDB2A12F4B667E00CC0CD4 /* HRVSpark Watch App Watch App */,
@@ -307,6 +310,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0632BF82F5915F000AD5C5A /* HRVSpark.storekit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
