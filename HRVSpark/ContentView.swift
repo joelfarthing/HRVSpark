@@ -200,7 +200,11 @@ struct ContentView: View {
                             if !storeKit.isProUnlocked {
                                 Button(action: {
                                     Task {
-                                        try? await storeKit.purchase()
+                                        do {
+                                            try await storeKit.purchase()
+                                        } catch {
+                                            storeKit.statusMessage = "Purchase failed \u2014 please try again."
+                                        }
                                     }
                                 }) {
                                     VStack(spacing: 4) {
@@ -528,7 +532,13 @@ struct ContentView: View {
                                     
                                     if let tipProduct = storeKit.tipJarProduct {
                                         Button(action: {
-                                            Task { try? await storeKit.purchaseTipJar() }
+                                            Task {
+                                                do {
+                                                    try await storeKit.purchaseTipJar()
+                                                } catch {
+                                                    storeKit.statusMessage = "Tip failed \u2014 please try again."
+                                                }
+                                            }
                                         }) {
                                             Text("Buy the Developer a Coffee — \(tipProduct.displayPrice)")
                                                 .font(.subheadline)

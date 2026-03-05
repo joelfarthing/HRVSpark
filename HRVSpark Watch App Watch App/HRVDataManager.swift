@@ -16,6 +16,9 @@ class HRVDataManager: NSObject, WCSessionDelegate {
     var errorMessage: String? = nil
     var lastCompanionContextSyncDate: Date? = nil
     
+    /// Callback when Pro status changes — watch ContentView observes this.
+    var onProStatusChanged: ((Bool) -> Void)?
+    
     // The Data Cards
     var freeCardReading: Int? = nil // Free: Latest reading
     var proCard2Reading: Int? = nil // Pro: Last 60-min average
@@ -68,6 +71,18 @@ class HRVDataManager: NSObject, WCSessionDelegate {
     }
     
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any]) {
+        // Handle Pro status sync from iPhone
+        if let unlocked = userInfo["isProUnlocked"] as? Bool {
+            let defaults = UserDefaults(suiteName: sharedSuiteName)
+            defaults?.set(unlocked, forKey: "isProUnlocked")
+            WidgetCenter.shared.reloadAllTimelines()
+            DispatchQueue.main.async {
+                self.onProStatusChanged?(unlocked)
+            }
+            return  // Pro status payload — don't try to parse as long-term data
+        }
+        
+        // Handle long-term data payload from iPhone
         if applyLongTermPayloadToUI(userInfo) {
             WidgetCenter.shared.reloadAllTimelines()
         }

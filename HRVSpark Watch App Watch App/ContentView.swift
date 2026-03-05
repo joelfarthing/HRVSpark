@@ -10,8 +10,7 @@ struct ContentView: View {
         return defaults?.bool(forKey: "isProUnlocked") ?? false
     }()
     
-    // Receive Pro status from iPhone via WatchConnectivity
-    private let proReceiver = ProStatusReceiver.shared
+
     
     // Design System
     let slateBlueTheme = LinearGradient(
@@ -233,8 +232,8 @@ struct ContentView: View {
         .onAppear {
             dataManager.requestAuthorization { _ in }
             
-            // Listen for Pro unlock from iPhone
-            proReceiver.onProStatusChanged = { unlocked in
+            // Listen for Pro unlock from iPhone via HRVDataManager (sole WCSession delegate)
+            dataManager.onProStatusChanged = { unlocked in
                 isProUnlocked = unlocked
             }
         }

@@ -106,7 +106,14 @@ class StoreKitManager: ObservableObject {
     // MARK: - Restore
     
     func restore() async {
-        try? await AppStore.sync()
+        do {
+            try await AppStore.sync()
+        } catch {
+            statusMessage = "Restore failed — check your internet connection and try again."
+            #if DEBUG
+            print("StoreKitManager: AppStore.sync() failed: \(error.localizedDescription)")
+            #endif
+        }
         await updateEntitlementStatus()
     }
     
@@ -128,6 +135,7 @@ class StoreKitManager: ObservableObject {
         let entitled = await checkEntitlement()
         isProUnlocked = entitled
         sharedDefaults?.set(entitled, forKey: StoreKitManager.proUnlockedKey)
+        syncProStatusToWatch(entitled)
     }
     
     private func checkEntitlement() async -> Bool {
@@ -176,12 +184,18 @@ class StoreKitManager: ObservableObject {
     nonisolated private func syncProStatusToWatch(_ unlocked: Bool) {
         guard WCSession.isSupported() else { return }
         let session = WCSession.default
-        guard session.activationState == .activated else { return }
         
-        // transferUserInfo is queued and delivers reliably even if watch is not currently reachable
-        session.transferUserInfo(["isProUnlocked": unlocked])
-        
-        // Reload complications so locked ones refresh
-        WidgetCenter.shared.reloadAllTimelines()
+        if session.activationState == .activated {
+            session.transferUserInfo(["isProUnlocked": unlocked])
+            WidgetCenter.shared.reloadAllTimelines()
+        } else {
+            // Session not yet activated — retry after a short delay
+            DispatchQueue.global().asyncAfter(deadline: .now() + 2.0) {
+                if session.activationState == .activated {
+                    session.transferUserInfo(["isProUnlocked": unlocked])
+                    WidgetCenter.shared.reloadAllTimelines()
+                }
+            }
+        }
     }
 }
