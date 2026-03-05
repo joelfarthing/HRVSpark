@@ -6,9 +6,8 @@ private let gaugeTimeframeColor = Color(red: 0.34, green: 0.72, blue: 1.0)
 
 // MARK: - App Group Manager
 
-// We use an App Group or UserDefaults to share data between the main App and the Widget.
-// For now, since we haven't set up an App Group, the widget will fetch its own data directly.
-// This is perfectly fine for a watchOS complication.
+// Uses App Group (group.com.filamentlabs.HRVSpark) shared UserDefaults for Pro status
+// and fetches HRV data directly via HealthKit for complication timeline entries.
 
 // MARK: - Entry
 

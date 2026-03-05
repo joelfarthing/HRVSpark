@@ -189,11 +189,12 @@ class StoreKitManager: ObservableObject {
             session.transferUserInfo(["isProUnlocked": unlocked])
             WidgetCenter.shared.reloadAllTimelines()
         } else {
-            // Session not yet activated — retry after a short delay
+            // Session not yet activated — retry with polling (up to 3 attempts)
             let unlockValue = unlocked
-            DispatchQueue.global().asyncAfter(deadline: .now() + 2.0) {
-                let s = WCSession.default
-                if s.activationState == .activated {
+            for attempt in 1...3 {
+                DispatchQueue.global().asyncAfter(deadline: .now() + Double(attempt) * 2.0) {
+                    let s = WCSession.default
+                    guard s.activationState == .activated else { return }
                     s.transferUserInfo(["isProUnlocked": unlockValue])
                     WidgetCenter.shared.reloadAllTimelines()
                 }
