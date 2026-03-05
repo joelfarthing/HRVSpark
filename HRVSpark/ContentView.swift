@@ -203,7 +203,7 @@ struct ContentView: View {
                                         do {
                                             try await storeKit.purchase()
                                         } catch {
-                                            storeKit.statusMessage = "Purchase failed \u2014 please try again."
+                                            storeKit.statusMessage = "Purchase failed — please try again."
                                         }
                                     }
                                 }) {
@@ -536,7 +536,7 @@ struct ContentView: View {
                                                 do {
                                                     try await storeKit.purchaseTipJar()
                                                 } catch {
-                                                    storeKit.statusMessage = "Tip failed \u2014 please try again."
+                                                    storeKit.statusMessage = "Tip failed — please try again."
                                                 }
                                             }
                                         }) {

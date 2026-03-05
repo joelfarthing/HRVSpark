@@ -1,7 +1,7 @@
 import Foundation
 import StoreKit
 import Combine
-import WatchConnectivity
+@preconcurrency import WatchConnectivity
 import WidgetKit
 
 /// Manages IAP for the Pro unlock using StoreKit 2.
@@ -190,9 +190,11 @@ class StoreKitManager: ObservableObject {
             WidgetCenter.shared.reloadAllTimelines()
         } else {
             // Session not yet activated — retry after a short delay
+            let unlockValue = unlocked
             DispatchQueue.global().asyncAfter(deadline: .now() + 2.0) {
-                if session.activationState == .activated {
-                    session.transferUserInfo(["isProUnlocked": unlocked])
+                let s = WCSession.default
+                if s.activationState == .activated {
+                    s.transferUserInfo(["isProUnlocked": unlockValue])
                     WidgetCenter.shared.reloadAllTimelines()
                 }
             }
